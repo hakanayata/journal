@@ -1,0 +1,32 @@
+{% extends 'journal/layout.html' %}
+
+{% block body %}
+  <div class="container d-grid col-12 col-lg-6 mt-2 mx-auto text-center">
+    <h2 class="display-4">New Entry</h2>
+    <form action="" method="post">
+      {% csrf_token %}
+      {% comment %} <div class="form-floating mb-3">{{ form.title }}
+        {{ form.title.label_tag }}</div> {% endcomment %}
+      <div class="form-floating mb-3">
+        {{ form.content }}
+        {% comment %} {{ form.content.label_tag }} {% endcomment %}
+      </div>
+      <div class="form-floating mb-3">{{ form.tags }}
+        {{ form.tags.label_tag }}</div>
+
+      <div class="d-grid gap-2 col-12 mx-auto mb-3">
+        <input class="btn btn-primary rounded-2 shadow-sm" type="submit" value="Save" />
+      </div>
+    </form>
+  </div>
+{% endblock %}
+
+{% block script %}
+  {{ form.media }}
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const bar = document.getElementsByClassName('tox-statusbar')
+      console.log(bar)
+    })
+  </script>
+{% endblock %}

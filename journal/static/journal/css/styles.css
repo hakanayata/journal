@@ -1,0 +1,18 @@
+#board {
+    border-collapse: separate;
+    border-spacing: 6px;
+    border: 1px solid #ddd;
+}
+
+
+#board td {
+    height: 36px;
+    width: 36px;
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+#board td:first-of-type {
+    background-color: #afac;
+}

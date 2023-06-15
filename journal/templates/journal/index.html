@@ -1,0 +1,93 @@
+{% extends 'journal/layout.html' %}
+{% load static %}
+
+
+{% block body %}
+<div class="container">
+    <!-- todo: if boxes get clicked open a modal with pre-populated form to see/update entry -->
+    <table id="board" class="mx-auto my-3 shadow-sm rounded-2">
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr class="border border-secondary-subtle border-1 opacity-25">
+
+    <h2 class="display-4 text-center">Today</h2>
+    {% comment %} <div class="border border-secondary-subtle d-flex justify-content-between align-items-center mb-3 rounded-2 shadow-sm p-2">
+        
+        {% if entry is not None %}
+            <div class="px-3">
+                <p class="text-secondary fw-bold">{{ entry.title }}</p>
+                <div>{{ entry.content|safe }}</div>
+                {% if entry.tags.all %}
+                    <div class="border-top d-flex gap-2 pt-2 pb-0">
+                        {% for tag in entry.tags.all %}
+                        <span class="badge text-bg-secondary rounded-pill">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div> 
+
+        {% else %}
+            <p class="lead my-0">No entry to show</p>
+            <a href="{% url 'create_entry' %}" class="btn btn-primary py-1 rounded-pill" role="button">New Entry</a>
+        {% endif %}
+            
+    </div> {% endcomment %}
+    <div class="d-flex align-items-center mb-3 rounded-2 shadow-sm p-2" id="todaysEntry">
+        <!-- JS WILL POPULATE THIS DIV -->
+    </div>
+
+
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'journal/js/board.js' %}"></script>
+<script src="{% static 'journal/js/script.js' %}"></script>
+{% endblock %}
