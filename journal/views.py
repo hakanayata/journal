@@ -184,7 +184,5 @@ def entries(request):
         entries = None
 
     entries = entries.order_by("-created_at").all()
-    print(entries)
     # in order to serialize non-dict objects -> safe=False
-    # return JsonResponse([entry.serialize() for entry in entries], safe=False)
-    return JsonResponse({"x": "y"})
+    return JsonResponse([entry.serialize() for entry in entries], safe=False)
