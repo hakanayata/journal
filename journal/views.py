@@ -1,5 +1,6 @@
 import json
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import AnonymousUser
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
@@ -15,21 +16,9 @@ from datetime import datetime, time, timedelta
 from django.utils import timezone
 
 
+@login_required(login_url="login")
 def index(request):
-    # entries = JournalEntry.objects.filter(user=request.user)
-    #! instead of day, create date time for start and end of the day
-    # today = timezone.now()
-    # print("••••••••••••••••••", today)
-    today = datetime.now().date()
-    tomorrow = today + timedelta(1)
-    today_start = datetime.combine(today, time())
-    today_end = datetime.combine(tomorrow, time())
-    todays_entry = JournalEntry.objects.filter(user=request.user,
-                                               created_at__lte=today_end, created_at__gte=today_start).first()
-    # print("####", todays_entry)
-    return render(request, "journal/index.html", {
-        "entry": todays_entry
-    })
+    return render(request, "journal/index.html")
 
 
 def login_view(request):
@@ -149,7 +138,7 @@ def update_entry(request, entry_id):
 
 
 # todo: API for fun
-@login_required(login_url="login")
+@login_required
 def entry(request, entry_id):
     # Query for requested entry
     try:
@@ -175,13 +164,14 @@ def entry(request, entry_id):
 
 
 @require_GET
-@login_required(login_url="login")
+@login_required
 def entries(request):
     # Query for entries
     try:
         entries = JournalEntry.objects.filter(user=request.user)
     except:
         entries = None
+        return JsonResponse({"warning": "No entry found."})
 
     entries = entries.order_by("-created_at").all()
     # in order to serialize non-dict objects -> safe=False
