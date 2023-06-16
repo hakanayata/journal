@@ -42,8 +42,8 @@ class JournalEntry(models.Model):
             # "title": self.title,
             "content": self.content,
             "tags": [tag.name for tag in self.tags.all()],
-            "created_at": self.created_at.strftime("%Y-%m-%d %H:%M:%S.000 UTC"),
-            "updated_at": self.updated_at.strftime("%Y-%m-%d %H:%M:%S.000 UTC"),
+            "created_at": self.created_at.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+            "updated_at": self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
         }
 
     class Meta:
