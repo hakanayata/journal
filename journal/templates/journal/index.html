@@ -4,10 +4,15 @@
 
 {% block body %}
 <div class="container">
-    <!-- todo: if boxes get clicked open a modal with pre-populated form to see/update entry -->
-    <table id="board" class="mx-auto my-3 shadow-sm rounded-2">
-        <tbody>
-            <tr>
+    <!-- TODO: if boxes get clicked open a modal with pre-populated form to see/update entry -->
+    {% comment %} <table id="board" class="mx-auto my-3 px-2 shadow-sm rounded-2">
+        <tbody class="d-flex flex-column gap-1">
+            <tr class="d-flex align-items-center justify-content-end gap-2">
+                <td></td>
+                <td></td>
+
+            </tr>
+            <tr class="d-flex align-items-center justify-content-center gap-2">
                 <td></td>
                 <td></td>
                 <td></td>
@@ -16,7 +21,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr>
+            <tr class="d-flex align-items-center justify-content-center gap-2">
                 <td></td>
                 <td></td>
                 <td></td>
@@ -25,7 +30,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr>
+            <tr class="d-flex align-items-center justify-content-center gap-2">
                 <td></td>
                 <td></td>
                 <td></td>
@@ -34,16 +39,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
+            <tr class="d-flex align-items-center justify-content-center gap-2">
                 <td></td>
                 <td></td>
                 <td></td>
@@ -53,7 +49,24 @@
                 <td></td>
             </tr>
         </tbody>
-    </table>
+    </table> {% endcomment %}
+
+    <div id="boardDiv">
+        <table class="mx-auto my-3 p-1 rounded-2 shadow-sm" id="activityBoard">
+            <thead class="d-flex align-items-center justify-content-center gap-2 mb-2" id="boardHead">
+                <tr class="d-flex align-items-center justify-content-center gap-2">
+                    <td>M</td>
+                    <td>T</td>
+                    <td>W</td>
+                    <td>T</td>
+                    <td>F</td>
+                    <td class="text-danger">S</td>
+                    <td class="text-danger">S</td>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
 
     <hr class="border border-secondary-subtle border-1 opacity-25">
 
