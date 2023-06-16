@@ -1,4 +1,35 @@
-#board {
+
+#activityBoard {
+    border-collapse: separate;
+    border-spacing: 6px;
+    border: 1px solid #ddd;
+}
+
+
+#activityBoard td {
+    height: 36px;
+    width: 36px;
+    border-radius: 5px;
+    line-height: 36px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#activityBoard > tbody td {
+    background-color: #eee;
+}
+
+#boardHead td {
+    background-color: none;
+} 
+
+#activityBoard > tbody td:first-of-type {
+    background-color: #afac;
+}
+
+
+
+/* #board {
     border-collapse: separate;
     border-spacing: 6px;
     border: 1px solid #ddd;
@@ -15,4 +46,4 @@
 
 #board td:first-of-type {
     background-color: #afac;
-}
+} */
