@@ -10,7 +10,5 @@ document.addEventListener('DOMContentLoaded', () => {
         return daysInCurrentMonth
     }
     numberOfDays = getDaysOfCurMonth()
-    console.log(numberOfDays);
-
 
 })
