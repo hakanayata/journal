@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const boardHead = document.getElementById("boardHead")
+    const activityBoard = document.getElementById("activityBoard")
     let numberOfDays;
     const getDaysOfCurMonth = () => {
         const currentDate = new Date()
@@ -10,5 +12,75 @@ document.addEventListener('DOMContentLoaded', () => {
         return daysInCurrentMonth
     }
     numberOfDays = getDaysOfCurMonth()
+    // if Thursday, getDay() returns 4, it's one-based instead of zero
+    const startsAtNthDay = new Date(new Date().setDate(1)).getDay()
+    // get zero-based index of starting day of this month
+    const indexOfStartAtNthDay = startsAtNthDay - 1
+    numberOfDays += indexOfStartAtNthDay
+    const daysInLastWeek = numberOfDays % 7
+    const numberOfWeeks = Math.ceil(numberOfDays / 7)
+    // console.log(numberOfDays, numberOfWeeks, daysInLastWeek);
+
+    const boardBody = document.createElement("tbody")
+    boardBody.className = "d-flex flex-column gap-2"
+
+    for (let i = 0; i < numberOfWeeks; i++) {
+        const newRow = document.createElement("tr")
+        if (i === 0) {
+            newRow.className = "d-flex align-items-center justify-content-end gap-2"
+            for (let j = indexOfStartAtNthDay; j < 7; j++) {
+                const newCell = document.createElement("td")
+                newRow.appendChild(newCell)
+            }
+            boardBody.appendChild(newRow)
+        } else if (i === 4) {
+            newRow.className = "d-flex align-items-center justify-content-start gap-2"
+            for (let k = 0; k < daysInLastWeek; k++) {
+                const newLastWeeksCell = document.createElement("td")
+                newRow.appendChild(newLastWeeksCell)
+            }
+            boardBody.appendChild(newRow)
+        } else {
+            newRow.className = "d-flex align-items-center justify-content-center gap-2"
+            for (let l = 0; l < 7; l++) {
+                const newCell = document.createElement("td")
+                newRow.appendChild(newCell)
+            }
+            boardBody.appendChild(newRow)
+        }
+
+    }
+
+    boardHead.insertAdjacentElement("afterend", boardBody)
 
 })
+
+
+
+
+
+
+
+
+
+
+// // most basic version of month view
+// for (let i = 0; i < numberOfWeeks; i++) {
+//     const newRow = document.createElement("tr")
+//     if (i === 4) {
+//         for (let k = 0; k < daysInLastWeek; k++) {
+//             const newLastWeeksCell = document.createElement("td")
+//             newRow.appendChild(newLastWeeksCell)
+//         }
+//         activityBoard.appendChild(newRow)
+//     } else {
+//         for (let j = 0; j < 7; j++) {
+//             const newCell = document.createElement("td")
+//             newRow.appendChild(newCell)
+//         }
+//         activityBoard.appendChild(newRow)
+//     }
+
+// }
+
+// todaysEntryDiv.insertAdjacentElement("afterend", activityBoard)
