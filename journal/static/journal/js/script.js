@@ -2,11 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const originURL = window.location.origin
     const todaysEntryParentDiv = document.getElementById("todaysEntry")
     const now = new Date()
-    console.log("now: ", now);
-    console.log(new Date(now.setHours(0, 0, 0, 0)));
-    const startOfDay = new Date(now.setHours(0, 0, 0, 0))
-    const endOfDay = new Date(now.setHours(23, 59, 59, 999))
-    console.log(startOfDay, endOfDay);
+    // console.log("now: ", now);
+    // console.log(new Date(now.setHours(0, 0, 0, 0)));
+    const startOfDay = new Date(now.setHours(0, 0, 0, 0)).toISOString()
+    const endOfDay = new Date(now.setHours(23, 59, 59, 999)).toISOString()
+    // console.log("start: ", startOfDay, "\nend: ", endOfDay);
 
     // Spinner div
     const spinnerDiv = document.createElement("div")
@@ -41,12 +41,15 @@ document.addEventListener("DOMContentLoaded", () => {
             entries => {
                 // ! FIX DATE FILTERING
                 console.log("entries: ", entries)
-                if (entries === undefined || entries.length === 0) {
-                    // Show msg when no entry
+
+                const [todaysEntry] = entries?.filter(entry => entry.created_at > startOfDay && entry.created_at < endOfDay)
+
+                if (todaysEntry === undefined) {
+                    // Message
                     const noEntryParEl = document.createElement("p")
                     noEntryParEl.className = "lead my-0"
                     noEntryParEl.textContent = "No entry to show."
-                    // New entry button and its div
+                    // Button
                     const newEntryBtnDiv = document.createElement("div")
                     newEntryBtnDiv.className = "d-grid gap-2 col-12 mx-auto mb-3"
                     const newEntryBtn = document.createElement("button")
@@ -70,9 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     // todaysEntryParentDiv.insertAdjacentElement("afterend", newEntryBtn)
                 } else {
+                    // * today's entry exists
                     // remove spinner before showing today's entry
-                    entries.forEach(entry => console.log(entry.created_at))
-                    const todaysEntry = entries.filter(entry => entry.created_at > startOfDay && entry.created_at < endOfDay)[0]
+                    // entries.forEach(entry => console.log(entry.created_at))
                     console.log("today's entry: ", todaysEntry);
                     // todo: create div for today's entry
                     const todaysEntryDiv = document.createElement("div")
@@ -86,7 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         const tagEl = document.createElement("span")
                         tagEl.className = "badge text-bg-secondary rounded-pill"
                         tagEl.textContent = tag
-                        todaysEntryDiv.appendChild(tagsDiv)
+                        tagsDiv.appendChild(tagEl)
+                        todaysEntryDiv.insertAdjacentElement("beforeend", tagsDiv)
                     }
 
                     setTimeout(() => {
