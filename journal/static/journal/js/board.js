@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const boardHead = document.getElementById("boardHead")
-    const activityBoard = document.getElementById("activityBoard")
     let numberOfDays;
     let currentDate = new Date()
     const getDaysOfCurMonth = () => {
@@ -14,12 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
     numberOfDays = getDaysOfCurMonth()
     // if Thursday, getDay() returns 4, it's one-based instead of zero
     const startsAtNthDay = new Date(new Date().setDate(1)).getDay()
-    // get zero-based index (0 - 6) of starting day of this month
+    // get zero-based index (0 - 6)
     const indexOfStartAtNthDay = startsAtNthDay - 1
     numberOfDays += indexOfStartAtNthDay
     const daysInLastWeek = numberOfDays % 7 === 0 ? 7 : numberOfDays % 7
     const numberOfWeeks = Math.ceil(numberOfDays / 7)
-    // console.log(numberOfDays, numberOfWeeks, daysInLastWeek);
 
     const boardBody = document.createElement("tbody")
     boardBody.className = "d-flex flex-column gap-2"
@@ -54,41 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
     boardHead.insertAdjacentElement("afterend", boardBody)
     let calendarDayCells = document.getElementsByTagName("td")
 
-    console.log(currentDate);
     const dayOfTheMonth = currentDate.getDate()
     // first 7 cells are labels
     const todaysCellIndex = dayOfTheMonth + 6
-    console.log(todaysCellIndex);
-    calendarDayCells[todaysCellIndex].setAttribute("style", "border: 3px #faf solid")
+    calendarDayCells[todaysCellIndex].setAttribute("style", "border: 3px #d7f solid")
 
 })
 
 
 
-
-
-
-
-
-
-
-// // most basic version of month view
-// for (let i = 0; i < numberOfWeeks; i++) {
-//     const newRow = document.createElement("tr")
-//     if (i === 4) {
-//         for (let k = 0; k < daysInLastWeek; k++) {
-//             const newLastWeeksCell = document.createElement("td")
-//             newRow.appendChild(newLastWeeksCell)
-//         }
-//         activityBoard.appendChild(newRow)
-//     } else {
-//         for (let j = 0; j < 7; j++) {
-//             const newCell = document.createElement("td")
-//             newRow.appendChild(newCell)
-//         }
-//         activityBoard.appendChild(newRow)
-//     }
-
-// }
-
-// todaysEntryDiv.insertAdjacentElement("afterend", activityBoard)
