@@ -57,6 +57,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const todaysCellIndex = dayOfTheMonth + 6
     calendarDayCells[todaysCellIndex].setAttribute("style", "border: 3px #d7f solid")
 
+    // * Highlight active days
+    getEntries().then(data => {
+        const entries = data
+        entries.forEach(entry => {
+            // console.log(entry.created_at);
+            // console.log(new Date(entry.created_at).getDate());
+            const activeDay = new Date(entry.created_at).getDate()
+            // first 7 cells (6 indexes) are labels
+            const indexOfDayToHighlight = activeDay + 6
+            // in case multiple entries on the same day 
+            if (calendarDayCells[indexOfDayToHighlight].style.backgroundColor !== "#afac") {
+                calendarDayCells[indexOfDayToHighlight].style.backgroundColor = "#afac"
+            }
+        })
+    })
+
 })
 
 
