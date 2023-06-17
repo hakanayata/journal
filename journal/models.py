@@ -24,6 +24,7 @@ class JournalEntry(models.Model):
     # dates are saved in UTC as per settings.py
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    date = models.DateField()
 
     def __str__(self):
         return self.content[:15]
@@ -44,6 +45,7 @@ class JournalEntry(models.Model):
             "tags": [tag.name for tag in self.tags.all()],
             "created_at": self.created_at.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
             "updated_at": self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
+            "date": self.date.strftime("%Y-%m-%d")
         }
 
     class Meta:
