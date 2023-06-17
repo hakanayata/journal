@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     numberOfDays = getDaysOfCurMonth()
     // if Thursday, getDay() returns 4, it's one-based instead of zero
-    const startsAtNthDay = new Date(currentDate.setDate(1)).getDay()
+    const startsAtNthDay = new Date(new Date().setDate(1)).getDay()
     // get zero-based index (0 - 6) of starting day of this month
     const indexOfStartAtNthDay = startsAtNthDay - 1
     numberOfDays += indexOfStartAtNthDay
@@ -52,6 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     boardHead.insertAdjacentElement("afterend", boardBody)
+    let calendarDayCells = document.getElementsByTagName("td")
+
+    console.log(currentDate);
+    const dayOfTheMonth = currentDate.getDate()
+    // first 7 cells are labels
+    const todaysCellIndex = dayOfTheMonth + 6
+    console.log(todaysCellIndex);
+    calendarDayCells[todaysCellIndex].setAttribute("style", "border: 3px #faf solid")
 
 })
 
