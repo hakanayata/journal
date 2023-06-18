@@ -28,7 +28,8 @@ class EntryForm(forms.ModelForm):
             }),
             "date": forms.DateInput(attrs={
                 "class": "form-control border-0 shadow-lg",
-                "placeholder": "Date"
+                "placeholder": "Date",
+                "type": "date"
             })
         }
 
