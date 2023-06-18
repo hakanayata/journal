@@ -69,10 +69,18 @@ async function getEntry(date = null) {
 
 // * displays specific day's entry
 const displayDaysEntry = (entry, date) => {
-    console.log(entry);
+    // console.log(entry);
     // * clean everything in daysEntry
     daysEntryParentDiv.innerHTML = ""
     newEntryBtnDiv.innerHTML = ""
+
+    const invisDateInput = document.createElement("input")
+    invisDateInput.style.display = "none"
+    invisDateInput.disabled = true
+    invisDateInput.type = "text"
+    invisDateInput.value = date
+    invisDateInput.id = "daysInvisDate"
+    daysEntryParentDiv.appendChild(invisDateInput)
 
     if (date === dateObjToYYYYmmdd(new Date())) {
         daysHeadingEl.textContent = "Today"

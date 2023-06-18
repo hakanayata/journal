@@ -7,6 +7,7 @@
       {% csrf_token %}
       <div class="form-floating mb-3">{{ form.date }}
         {{ form.date.label_tag }}</div>
+      {% comment %} <div class="mb-3">{{ form.date.label_tag }}{{ form.date }}</div> {% endcomment %}
       <div class="form-floating mb-3">
         {{ form.content }}
         {% comment %} {{ form.content.label_tag }} {% endcomment %}

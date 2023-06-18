@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", (event) => {
         const element = event.target
         if (element.id === "newEntryBtn") {
-            location.href = `${originURL}/create_entry`
+            const daysDateEl = document.getElementById("daysInvisDate")
+            location.href = `${originURL}/create_entry/${daysDateEl.value}`
         } else if (element.dataset.date) {
             const clickedDate = element.dataset.date
             getEntry(clickedDate).then(data => displayDaysEntry(data, clickedDate))

@@ -75,11 +75,11 @@ def register(request):
 
 @require_http_methods(["GET", "POST"])
 @login_required(login_url="login")
-def create_entry(request):
+def create_entry(request, date_str):
     if request.method == "GET":
-        form = EntryForm()
+        form = EntryForm({"date": date_str})
         return render(request, "journal/create_entry.html", {
-            "form": form
+            "form": form,
         })
     elif request.method == "POST":
         # create instance and populate it with data from the request

@@ -13,7 +13,7 @@ class EntryForm(forms.ModelForm):
     # Fix: M2M field "tags" yields error
     # override ManyToMany with CharField
     tags = forms.CharField(required=False, widget=forms.TextInput(attrs={
-        "class": "form-control border-0 shadow-lg",
+        "class": "form-control shadow-lg",
         "placeholder": "Tags",
     }))
 
@@ -22,12 +22,12 @@ class EntryForm(forms.ModelForm):
         fields = ["date", "content", "tags"]
         widgets = {
             "content": TinyMCE(attrs={
-                "class": "form-control border-0 shadow-lg",
+                "class": "form-control shadow-lg",
                 "cols": 30,
                 "rows": 10
             }),
             "date": forms.DateInput(attrs={
-                "class": "form-control border-0 shadow-lg",
+                "class": "form-control shadow-lg",
                 "placeholder": "Date",
                 "type": "date"
             })
