@@ -176,3 +176,15 @@ def entries(request):
     entries = entries.order_by("-created_at").all()
     # in order to serialize non-dict objects -> safe=False
     return JsonResponse([entry.serialize() for entry in entries], safe=False)
+
+
+@require_GET
+@login_required
+def entry_on(request, date):
+    # Query for the day
+    try:
+        entry = JournalEntry.objects.get(user=request.user, date=date)
+    except JournalEntry.DoesNotExist:
+        return JsonResponse({"error": "No entry on this day."})
+
+    return JsonResponse(entry.serialize())
