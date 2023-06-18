@@ -171,7 +171,7 @@ def entries(request):
         entries = JournalEntry.objects.filter(user=request.user)
     except:
         entries = None
-        return JsonResponse({"warning": "No entry found."})
+        return JsonResponse({"error": "No entry found."})
 
     entries = entries.order_by("-created_at").all()
     # in order to serialize non-dict objects -> safe=False
