@@ -19,13 +19,17 @@ class EntryForm(forms.ModelForm):
 
     class Meta:
         model = JournalEntry
-        fields = ["content", "tags"]
+        fields = ["date", "content", "tags"]
         widgets = {
             "content": TinyMCE(attrs={
                 "class": "form-control border-0 shadow-lg",
                 "cols": 30,
                 "rows": 10
             }),
+            "date": forms.DateInput(attrs={
+                "class": "form-control border-0 shadow-lg",
+                "placeholder": "Date"
+            })
         }
 
     # this will automatically run when form.is_valid() called
