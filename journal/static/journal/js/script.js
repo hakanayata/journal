@@ -1,3 +1,4 @@
+console.log(getNthDaysDate(currentDate.getDate()))
 document.addEventListener("DOMContentLoaded", () => {
     const todaysEntryParentDiv = document.getElementById("todaysEntry")
     const now = new Date()
@@ -16,7 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     getEntries().then(data => {
         const entries = data
         console.log("entries (script.js): ", entries);
-        const [todaysEntry] = entries?.filter(entry => entry.created_at > startOfDay && entry.created_at < endOfDay)
+        // const [todaysEntry] = entries?.filter(entry => entry.created_at > startOfDay && entry.created_at < endOfDay) // ! OLD filter
+        const [todaysEntry] = entries?.filter(entry => entry.date === getNthDaysDate(currentDate.getDate()))
 
         if (todaysEntry === undefined) {
             // Message
@@ -41,8 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
             todaysEntryParentDiv.appendChild(noEntryParEl)
         } else {
             // * today's entry exists
-            // remove spinner before showing today's entry
-            // entries.forEach(entry => console.log(entry.created_at))
             console.log("today's entry: ", todaysEntry);
             // todo: create div for today's entry
             const todaysEntryDiv = document.createElement("div")
