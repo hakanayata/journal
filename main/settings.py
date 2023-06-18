@@ -129,12 +129,12 @@ TINYMCE_DEFAULT_CONFIG = {
     "theme": "silver",
     "height": 200,
     "menubar": False,
-    "plugins": ['quickbar'],
+    "plugins": False,
     "toolbar": "formatselect | bold italic",
     "resize": False,
     "placeholder": "Wow, what a day...",
     "statusbar": False,
-    "content_css": "(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default')",
+    # "content_css": "(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default')",
     # "inline": True
 }
 
