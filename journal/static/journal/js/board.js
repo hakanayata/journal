@@ -1,6 +1,7 @@
 const currentDate = new Date()
+const curYearAndMonth = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`
 // returns "YYYY-mm-dd" of given day
-const nthDaysDate = (n) => new Date(new Date().setDate(n)).toISOString().slice(0, 10)
+const getNthDaysDate = (n) => new Date(new Date().setDate(n)).toISOString().slice(0, 10)
 const getDaysOfCurMonth = () => {
     const currentYear = currentDate.getFullYear()
     const nextMonth = currentDate.getMonth() + 1
@@ -22,9 +23,11 @@ const numberOfWeeks = Math.ceil(totalDaysIncludingOffset / 7)
 document.addEventListener('DOMContentLoaded', () => {
     const boardHead = document.getElementById("boardHead")
 
+    // * create table body
     const boardBody = document.createElement("tbody")
     boardBody.className = "d-flex flex-column gap-2"
 
+    // * create calendar-like monthly activity board
     let n = 0;
     while (n < daysInCurMonth) {
         for (let i = 0; i < numberOfWeeks; i++) {
@@ -34,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let j = indexOfStartAtNthDay; j < 7; j++) {
                     const newCell = document.createElement("td")
                     newCell.role = "button"
-                    newCell.dataset["date"] = nthDaysDate(n + 1)
+                    newCell.dataset["date"] = getNthDaysDate(n + 1)
                     newCell.textContent = n + 1
                     n++
                     newRow.appendChild(newCell)
@@ -45,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let k = 0; k < daysInLastWeek; k++) {
                     const newCell = document.createElement("td")
                     newCell.role = "button"
-                    newCell.dataset["date"] = nthDaysDate(n + 1)
+                    newCell.dataset["date"] = getNthDaysDate(n + 1)
                     newCell.textContent = n + 1
                     n++
                     newRow.appendChild(newCell)
@@ -56,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let l = 0; l < 7; l++) {
                     const newCell = document.createElement("td")
                     newCell.role = "button"
-                    newCell.dataset["date"] = nthDaysDate(n + 1)
+                    newCell.dataset["date"] = getNthDaysDate(n + 1)
                     newCell.textContent = n + 1
                     n++
                     newRow.appendChild(newCell)
@@ -72,24 +75,22 @@ document.addEventListener('DOMContentLoaded', () => {
     boardHead.insertAdjacentElement("afterend", boardBody)
     let calendarDayCells = document.getElementsByTagName("td")
 
+    // * highlight today
     const todaysNumber = currentDate.getDate()
     // first 7 cells are labels
     const todaysCellIndex = todaysNumber + 6
     calendarDayCells[todaysCellIndex].setAttribute("style", "border: 3px #d7f solid")
 
-    // Highlight active days // todo: update this
-    getEntries().then(data => {
-        const entries = data
-        entries.forEach(entry => {
-            // console.log(entry.created_at);
-            // console.log(new Date(entry.created_at).getDate());
-            const activeDay = new Date(entry.created_at).getDate()
+    // * Highlight active days of this month
+    getEntries().then(entries => {
+        // filter first 7 chars of date e.g. "2023-06"
+        const thisMonthsEntries = entries.filter(entry => entry.date.slice(0, 7) === curYearAndMonth)
+        thisMonthsEntries.forEach(entry => {
+            const activeDay = new Date(entry.date).getDate()
             // first 7 cells (6 indexes) are labels
             const indexOfDayToHighlight = activeDay + 6
-            // in case multiple entries on the same day //! delete after adding 'date' field  
-            if (calendarDayCells[indexOfDayToHighlight].style.backgroundColor !== "#afac") {
-                calendarDayCells[indexOfDayToHighlight].style.backgroundColor = "#afac"
-            }
+            calendarDayCells[indexOfDayToHighlight].style.backgroundColor = "#afac"
+
         })
     })
 
