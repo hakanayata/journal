@@ -11,5 +11,14 @@ async function getEntries() {
         return data
     } catch (error) {
         console.error(error)
+        const alertDiv = document.createElement("div")
+        alertDiv.setAttribute("class", "alert alert-danger shadow-lg")
+        alertDiv.setAttribute("role", "alert")
+        alertDiv.setAttribute("style", "position: fixed; right: 10px; top: 10px; z-index: 2; max-width: 320px !important;")
+        alertDiv.innerHTML = `${error.message}`
+        document.body.appendChild(alertDiv)
+        setTimeout(() => {
+            alertDiv.remove()
+        }, 2500);
     }
 }
