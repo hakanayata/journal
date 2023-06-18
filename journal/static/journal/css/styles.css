@@ -20,9 +20,9 @@ tbody td:hover {
 }
 
 #activityBoard > tbody td {
-    background-color: #dddb;
+    background-color: #dddc;
     font-size: small;
-    color: #99b
+    color: #339a
 }
 
 #boardHead td {
