@@ -1,24 +1,26 @@
+const currentDate = new Date()
+// returns "YYYY-mm-dd" of given day
+const nthDaysDate = (n) => new Date(new Date().setDate(n)).toISOString().slice(0, 10)
+const getDaysOfCurMonth = () => {
+    const currentYear = currentDate.getFullYear()
+    const nextMonth = currentDate.getMonth() + 1
+
+    // parameter "0" gives us the last day of prev. month 
+    const daysInCurrentMonth = new Date(currentYear, nextMonth, 0).getDate()
+    return daysInCurrentMonth
+}
+
+const daysInCurMonth = getDaysOfCurMonth()
+// if Thursday, getDay() returns 4, it's one-based instead of zero
+const startsAtNthDay = new Date(new Date().setDate(1)).getDay()
+// get zero-based index (0 - 6)
+const indexOfStartAtNthDay = startsAtNthDay - 1
+const totalDaysIncludingOffset = daysInCurMonth + indexOfStartAtNthDay
+const daysInLastWeek = totalDaysIncludingOffset % 7 === 0 ? 7 : totalDaysIncludingOffset % 7
+const numberOfWeeks = Math.ceil(totalDaysIncludingOffset / 7)
+
 document.addEventListener('DOMContentLoaded', () => {
     const boardHead = document.getElementById("boardHead")
-    const currentDate = new Date()
-    // first day of the month in ISO format e.g. "2023-06-18"
-    const nthDaysDate = (n) => new Date(new Date().setDate(n)).toISOString().slice(0, 10)
-    const getDaysOfCurMonth = () => {
-        const currentYear = currentDate.getFullYear()
-        const nextMonth = currentDate.getMonth() + 1
-
-        // parameter "0" gives us the last day of prev. month 
-        const daysInCurrentMonth = new Date(currentYear, nextMonth, 0).getDate()
-        return daysInCurrentMonth
-    }
-    const daysInCurMonth = getDaysOfCurMonth()
-    // if Thursday, getDay() returns 4, it's one-based instead of zero
-    const startsAtNthDay = new Date(new Date().setDate(1)).getDay()
-    // get zero-based index (0 - 6)
-    const indexOfStartAtNthDay = startsAtNthDay - 1
-    const totalDaysIncludingOffset = daysInCurMonth + indexOfStartAtNthDay
-    const daysInLastWeek = totalDaysIncludingOffset % 7 === 0 ? 7 : totalDaysIncludingOffset % 7
-    const numberOfWeeks = Math.ceil(totalDaysIncludingOffset / 7)
 
     const boardBody = document.createElement("tbody")
     boardBody.className = "d-flex flex-column gap-2"
@@ -33,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const newCell = document.createElement("td")
                     newCell.role = "button"
                     newCell.dataset["date"] = nthDaysDate(n + 1)
+                    newCell.textContent = n + 1
                     n++
                     newRow.appendChild(newCell)
                 }
@@ -40,11 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (i === numberOfWeeks - 1) {
                 newRow.className = "d-flex align-items-center justify-content-start gap-2"
                 for (let k = 0; k < daysInLastWeek; k++) {
-                    const newLastWeeksCell = document.createElement("td")
-                    newLastWeeksCell.role = "button"
-                    newLastWeeksCell.dataset["date"] = nthDaysDate(n + 1)
+                    const newCell = document.createElement("td")
+                    newCell.role = "button"
+                    newCell.dataset["date"] = nthDaysDate(n + 1)
+                    newCell.textContent = n + 1
                     n++
-                    newRow.appendChild(newLastWeeksCell)
+                    newRow.appendChild(newCell)
                 }
                 boardBody.appendChild(newRow)
             } else {
@@ -53,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const newCell = document.createElement("td")
                     newCell.role = "button"
                     newCell.dataset["date"] = nthDaysDate(n + 1)
+                    newCell.textContent = n + 1
                     n++
                     newRow.appendChild(newCell)
                 }
@@ -72,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const todaysCellIndex = todaysNumber + 6
     calendarDayCells[todaysCellIndex].setAttribute("style", "border: 3px #d7f solid")
 
-    // * Highlight active days
+    // Highlight active days // todo: update this
     getEntries().then(data => {
         const entries = data
         entries.forEach(entry => {
