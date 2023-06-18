@@ -16,9 +16,14 @@
 }
 
 #activityBoard > tbody td {
-    background-color: #eee;
+    background-color: #dddb;
 }
 
 #boardHead td {
     background-color: none;
 } 
+
+/* add hover effect to cells starting from 2nd row */
+tbody td:hover {
+    opacity: 0.6;
+}
