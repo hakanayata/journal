@@ -1,3 +1,6 @@
+tbody td:hover {
+    opacity: 0.6;
+}
 
 #activityBoard {
     border-collapse: separate;
@@ -7,23 +10,21 @@
 
 
 #activityBoard td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 36px;
     width: 36px;
     border-radius: 5px;
-    line-height: 36px;
-    vertical-align: middle;
-    text-align: center;
+    padding: 0;
 }
 
 #activityBoard > tbody td {
     background-color: #dddb;
+    font-size: small;
+    color: #99b
 }
 
 #boardHead td {
     background-color: none;
 } 
-
-/* add hover effect to cells starting from 2nd row */
-tbody td:hover {
-    opacity: 0.6;
-}
