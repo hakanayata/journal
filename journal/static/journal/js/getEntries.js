@@ -144,6 +144,7 @@ const displayDaysEntry = (entry, date) => {
             // daysEntryDiv.insertAdjacentElement("beforeend", tagsDiv)
         }
 
+        //#region edit + delete menu button
         const optionsBtnNavEl = document.createElement("nav")
         optionsBtnNavEl.className = "d-flex align-items-end"
         optionsBtnNavEl.id = "optionsBtn"
@@ -162,16 +163,27 @@ const displayDaysEntry = (entry, date) => {
         const optOneListEl = document.createElement("li")
         const optOneEl = document.createElement("a")
         optOneEl.className = "dropdown-item"
-        optOneEl.id = `deleteBtn-${entry.id}`
+        optOneEl.id = `editBtn-${entry.id}`
         optOneEl.dataset.id = entry.id
         optOneEl.dataset.date = entry.date
         optOneEl.href = "javascript:void(0)"
-        optOneEl.textContent = "Delete"
+        optOneEl.textContent = "Edit"
+        const optTwoListEl = document.createElement("li")
+        const optTwoEl = document.createElement("a")
+        optTwoEl.className = "dropdown-item"
+        optTwoEl.id = `deleteBtn-${entry.id}`
+        optTwoEl.dataset.id = entry.id
+        optTwoEl.dataset.date = entry.date
+        optTwoEl.href = "javascript:void(0)"
+        optTwoEl.textContent = "Delete"
+        //#endregion
 
 
 
         optOneListEl.appendChild(optOneEl)
+        optTwoListEl.appendChild(optTwoEl)
         optionsUListEl.appendChild(optOneListEl)
+        optionsUListEl.appendChild(optTwoListEl)
         optionsDropdownEl.appendChild(optionsDropDownBtn)
         optionsDropdownEl.appendChild(optionsUListEl)
         optionsBtnNavEl.appendChild(optionsDropdownEl)

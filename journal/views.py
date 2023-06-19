@@ -124,26 +124,46 @@ def create_entry(request, date_str):
 
 
 @login_required(login_url="login")
-def update_entry(request, entry_id):
+def update_entry(request, date_str):
     # Query for requested entry
     try:
-        entry = JournalEntry.objects.get(pk=entry_id)
+        entry = JournalEntry.objects.get(user=request.user, date=date_str)
     except JournalEntry.DoesNotExist:
         messages.error(request, "Entry not found!")
         return JsonResponse({"error": "Entry not found"}, status=404)
 
-    if request.method == "PUT":
-        if entry.user == request.user:
-            # deserialize json to python obj
-            data = json.loads(request.body)
-            content = data["content"]
-            tags = data["tags"]
-            entry.content = content
-            entry.tags = tags
-            entry.save()
-            return HttpResponse(status=204)
+    if request.method == "GET":
+        form = EntryForm(instance=entry)
+        # Modify form's tags field
+        tag_names = ", ".join(tag.name for tag in entry.tags.all())
+        form.initial["tags"] = tag_names
+
+        return render(request, "journal/update_entry.html", {
+            "form": form
+        })
+
+    elif request.method == "POST":
+
+        form = EntryForm(request.POST, instance=entry)
+
+        if form.is_valid() and entry.user == request.user:
+            updated_entry = form.save(commit=False)
+            updated_entry.user = request.user
+
+            # Clear existing tags
+            entry.tags.clear()
+            tag_names = form.cleaned_data["tags"]
+
+            updated_entry.save()
+
+            for tag_name in tag_names:
+                tag, created_tag = Tag.objects.get_or_create(
+                    name=tag_name.strip())
+                entry.tags.add(tag)
+
+            messages.success(request, "Entry updated.")
+            return HttpResponseRedirect(reverse("index"))
         else:
-            messages.error(request, "Entry not found!")
             return JsonResponse({"error": "Not authorized"}, status=401)
 
     else:
@@ -162,16 +182,6 @@ def entry(request, entry_id):
     # Return entry content
     if request.method == "GET":
         return JsonResponse(entry.serialize())
-
-    # Update
-    elif request.method == "PUT":
-        data = json.loads(request.body)
-        if data.get("content") is not None:
-            entry.content = data["content"]
-        if data.get("tags") is not None:
-            entry.tags = data["tags"]
-        entry.save()
-        return HttpResponse(status=204)
 
     elif request.method == "DELETE":
         try:

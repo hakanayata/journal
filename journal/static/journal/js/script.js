@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (element.id === "newEntryBtn") {
             const daysDateEl = document.getElementById("daysInvisDate")
             location.href = `${originURL}/create_entry/${daysDateEl.value}`
+        } else if (element.id.startsWith("editBtn")) {
+            const entryID = element.dataset.id
+            const dateToUpdate = element.dataset.date
+            location.href = `${originURL}/update_entry/${dateToUpdate}`
         } else if (element.id.startsWith("deleteBtn")) {
             const entryID = element.dataset.id
             const dateToDelete = element.dataset.date
