@@ -2,6 +2,10 @@ tbody td:hover {
     opacity: 0.75;
 }
 
+p {
+    margin-bottom: 0;
+}
+
 #activityBoard {
     border-collapse: separate;
     border-spacing: 6px;
@@ -28,3 +32,7 @@ tbody td:hover {
 #boardHead td {
     background-color: none;
 } 
+
+.nav-item.dropdown {
+    list-style-type: none;
+}
