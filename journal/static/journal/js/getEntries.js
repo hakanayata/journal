@@ -3,6 +3,7 @@ let daysEntryParentDiv
 let daysHeadingEl
 let newEntryBtnDiv
 let data
+let csrfToken
 const originURL = window.location.origin
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     daysEntryParentDiv = document.getElementById("daysEntry")
     daysHeadingEl = document.getElementById("daysHeading")
     newEntryBtnDiv = document.getElementById("newEntryBtnDiv")
+    csrfToken = document.getElementById("csrfToken").value
 })
 
 const dateObjToYYYYmmdd = (date) => {
@@ -20,6 +22,24 @@ const dateObjToYYYYmmdd = (date) => {
     return `${year}-${month}-${day}`
 }
 
+// * displays alert notification
+const displayAlert = (type, data) => {
+    const alertDiv = document.createElement("div")
+    alertDiv.setAttribute("class", `alert alert-${type === 'info' ? 'info' : type === 'success' ? 'success' : 'danger'} shadow-lg`)
+    alertDiv.setAttribute("role", "alert")
+    alertDiv.setAttribute("style", "position: fixed; right: 10px; top: 10px; z-index: 2; max-width: 320px !important;")
+    if (type === "error") {
+        alertDiv.innerHTML = `${data.message}`
+    } else {
+        alertDiv.innerHTML = data
+    }
+    document.body.appendChild(alertDiv)
+    setTimeout(() => {
+        alertDiv.remove()
+    }, 2500);
+}
+
+// * returns every entries
 async function getEntries() {
     // once run, do not fetch data again
     if (data) return data
@@ -30,16 +50,7 @@ async function getEntries() {
         // console.log("getEntries: ", data);
         return data
     } catch (error) {
-        console.error(error)
-        const alertDiv = document.createElement("div")
-        alertDiv.setAttribute("class", "alert alert-danger shadow-lg")
-        alertDiv.setAttribute("role", "alert")
-        alertDiv.setAttribute("style", "position: fixed; right: 10px; top: 10px; z-index: 2; max-width: 320px !important;")
-        alertDiv.innerHTML = `${error.message}`
-        document.body.appendChild(alertDiv)
-        setTimeout(() => {
-            alertDiv.remove()
-        }, 2500);
+        displayAlert("error", error)
     }
 }
 
@@ -54,22 +65,24 @@ async function getEntry(date = null) {
         return data
     }
     catch (error) {
-        const alertDiv = document.createElement("div")
-        alertDiv.setAttribute("class", "alert alert-danger shadow-lg")
-        alertDiv.setAttribute("role", "alert")
-        alertDiv.setAttribute("style", "position: fixed; right: 10px; top: 10px; z-index: 2; max-width: 320px !important;")
-        alertDiv.innerHTML = `${error.message}`
-        document.body.appendChild(alertDiv)
-        setTimeout(() => {
-            alertDiv.remove()
-        }, 2500);
+        displayAlert("error", error)
     }
 }
 
 
+// * deletes entry with a given id
+async function deleteEntry(entryID) {
+    return fetch(`${originURL}/entry/${entryID}`, {
+        method: "DELETE",
+        headers: {
+            'X-CSRFToken': csrfToken
+        }
+    })
+}
+
 // * displays specific day's entry
 const displayDaysEntry = (entry, date) => {
-    // console.log(entry);
+    console.log(entry);
     // * clean everything in daysEntry
     daysEntryParentDiv.innerHTML = ""
     newEntryBtnDiv.innerHTML = ""
@@ -111,12 +124,16 @@ const displayDaysEntry = (entry, date) => {
         // daysEntryParentDiv.insertAdjacentElement("afterend", newEntryBtnDiv)
         daysEntryParentDiv.appendChild(noEntryParEl)
     } else {
+        console.log(entry);
         // * today's entry exists
         const daysEntryDiv = document.createElement("div")
+        daysEntryDiv.className = "px-2 w-100"
         daysEntryDiv.innerHTML = entry.content
 
+        const entryFooterDiv = document.createElement("div")
+        entryFooterDiv.className = "d-flex justify-content-between"
         const tagsDiv = document.createElement("div")
-        tagsDiv.className = "border-top d-flex gap-2 pt-2 pb-0"
+        tagsDiv.className = "border-top d-flex gap-2 pt-2 pb-0 mt-2"
 
         for (const tag of entry.tags) {
             // console.log(tag);
@@ -124,11 +141,53 @@ const displayDaysEntry = (entry, date) => {
             tagEl.className = "badge text-bg-secondary rounded-pill"
             tagEl.textContent = tag
             tagsDiv.appendChild(tagEl)
-            daysEntryDiv.insertAdjacentElement("beforeend", tagsDiv)
+            // daysEntryDiv.insertAdjacentElement("beforeend", tagsDiv)
         }
 
-        daysEntryDiv.appendChild(tagsDiv)
+        const optionsBtnNavEl = document.createElement("nav")
+        optionsBtnNavEl.className = "d-flex align-items-end"
+        optionsBtnNavEl.id = "optionsBtn"
+        const optionsDropdownEl = document.createElement("li")
+        optionsDropdownEl.className = "nav-item dropdown"
+        const optionsDropDownBtn = document.createElement("a")
+        optionsDropDownBtn.className = "nav-link"
+        optionsDropDownBtn.href = "javascript:void(0)"
+        optionsDropDownBtn.role = "button"
+        optionsDropDownBtn.dataset.bsToggle = "dropdown"
+        optionsDropDownBtn.ariaExpanded = false
+        optionsDropDownBtn.setAttribute("style", "font-size: 12px; opacity: 0.7")
+        optionsDropDownBtn.textContent = "•••"
+        const optionsUListEl = document.createElement("ul")
+        optionsUListEl.className = "dropdown-menu"
+        const optOneListEl = document.createElement("li")
+        const optOneEl = document.createElement("a")
+        optOneEl.className = "dropdown-item"
+        optOneEl.id = `deleteBtn-${entry.id}`
+        optOneEl.dataset.id = entry.id
+        optOneEl.dataset.date = entry.date
+        optOneEl.href = "javascript:void(0)"
+        optOneEl.textContent = "Delete"
+
+
+
+        optOneListEl.appendChild(optOneEl)
+        optionsUListEl.appendChild(optOneListEl)
+        optionsDropdownEl.appendChild(optionsDropDownBtn)
+        optionsDropdownEl.appendChild(optionsUListEl)
+        optionsBtnNavEl.appendChild(optionsDropdownEl)
+
+        entryFooterDiv.appendChild(tagsDiv) // * OK
+        entryFooterDiv.appendChild(optionsBtnNavEl) // * ok
+
+        // daysEntryDiv.appendChild(tagsDiv)
+        // daysEntryDiv.appendChild(entryFooterDiv)
+        daysEntryDiv.insertAdjacentElement("beforeend", entryFooterDiv)
+
         daysEntryParentDiv.insertAdjacentElement("beforeend", daysEntryDiv)
 
+    }
+
+    if (entry.message === "Entry deleted.") {
+        displayAlert("success", entry.message)
     }
 }
