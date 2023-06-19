@@ -150,7 +150,7 @@ def update_entry(request, entry_id):
         return JsonResponse({"error": "Only PUT method allowed"}, status=400)
 
 
-# todo: API for fun
+# todo: API
 @login_required
 def entry(request, entry_id):
     # Query for requested entry
@@ -172,8 +172,17 @@ def entry(request, entry_id):
             entry.tags = data["tags"]
         entry.save()
         return HttpResponse(status=204)
+
+    elif request.method == "DELETE":
+        try:
+            entry.delete()
+        except:
+            return JsonResponse({"error": "Could not delete."})
+
+        return HttpResponse(status=204)
+
     else:
-        return JsonResponse({"error": "GET or PUT request required."}, status=400)
+        return JsonResponse({"error": "GET, PUT or DELETE request required."}, status=400)
 
 
 @require_GET

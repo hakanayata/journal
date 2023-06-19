@@ -6,6 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
         if (element.id === "newEntryBtn") {
             const daysDateEl = document.getElementById("daysInvisDate")
             location.href = `${originURL}/create_entry/${daysDateEl.value}`
+        } else if (element.id.startsWith("deleteBtn")) {
+            const entryID = element.dataset.id
+            const dateToDelete = element.dataset.date
+
+            deleteEntry(entryID).then(res => {
+                if (!res.ok) {
+                    throw new Error("Oops! Something went wrong.")
+                }
+                displayAlert("success", "Entry deleted.")
+                // todo: remove entry from DOM // get date from data-date
+                getEntry(dateToDelete).then(data => displayDaysEntry(data, dateToDelete))
+
+            }).catch(err => displayAlert("error", err))
         } else if (element.dataset.date) {
             const clickedDate = element.dataset.date
             getEntry(clickedDate).then(data => displayDaysEntry(data, clickedDate))

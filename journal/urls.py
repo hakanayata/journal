@@ -11,5 +11,5 @@ urlpatterns = [
     # API Routes
     path("entries", views.entries, name="entries"),
     path("entry_on/<str:date>", views.entry_on, name="entry_on"),
-    path("entry/<int:id>", views.entry, name="entry"),
+    path("entry/<int:entry_id>", views.entry, name="entry"),
 ]
