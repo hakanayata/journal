@@ -35,7 +35,6 @@ class EntryForm(forms.ModelForm):
 
     # this will automatically run when form.is_valid() called
     def clean_tags(self):
-        print("RUN RUN RUN RUN")
         tags = self.cleaned_data.get("tags")
         if tags:
             cleaned_tags = [tag.strip() for tag in tags.split(",")]
