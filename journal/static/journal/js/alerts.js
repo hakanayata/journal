@@ -8,6 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         setTimeout(() => {
             alertDiv.style.display = "none"
-        }, 2500);
+        }, 3000);
     }
 })
