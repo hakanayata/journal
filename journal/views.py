@@ -85,7 +85,20 @@ def create_entry(request, date_str):
         # create instance and populate it with data from the request
         form = EntryForm(request.POST)
 
+        # check if entry exists on given day
+        requested_date = request.POST.get("date")
+        try:
+            entry_db = JournalEntry.objects.get(
+                user=request.user, date=requested_date)
+            if entry_db:
+                messages.error(
+                    request, f"Entry already exists on {requested_date}")
+                return HttpResponseRedirect(reverse("index"))
+        except JournalEntry.DoesNotExist:
+            pass
+
         if form.is_valid():
+
             entry = form.save(commit=False)
             entry.user = request.user
             entry.save()
