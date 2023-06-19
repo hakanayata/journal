@@ -4,53 +4,7 @@
 
 {% block body %}
 <div class="container" id="indexView">
-    <!-- TODO: if boxes get clicked open a modal with pre-populated form to see/update entry -->
-    {% comment %} <table id="board" class="mx-auto my-3 px-2 shadow-sm rounded-2">
-        <tbody class="d-flex flex-column gap-1">
-            <tr class="d-flex align-items-center justify-content-end gap-2">
-                <td></td>
-                <td></td>
-
-            </tr>
-            <tr class="d-flex align-items-center justify-content-center gap-2">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr class="d-flex align-items-center justify-content-center gap-2">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr class="d-flex align-items-center justify-content-center gap-2">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr class="d-flex align-items-center justify-content-center gap-2">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table> {% endcomment %}
-
+    <input type="hidden" name="csrfToken" value="{{ csrf_token }}" style="display: none;" id="csrfToken">
     <div id="boardDiv">
         <table class="mx-auto my-3 p-1 rounded-2 shadow-sm" id="activityBoard">
             <thead class="d-flex align-items-center justify-content-center gap-2 mb-2" id="boardHead">
@@ -73,7 +27,7 @@
     
     <div id="daysView">
         <h2 class="display-4 text-center text-danger-emphasis" id="daysHeading"></h2>
-        <div class="d-flex align-items-center mb-3 rounded-2 shadow-sm p-2" id="daysEntry">
+        <div class="border d-flex align-items-center mb-3 rounded-2 shadow-sm p-2" id="daysEntry">
             <!-- js manipulation -->
         </div>
         <div class="d-grid col-12 gap-2 mb-3 mx-auto" id="newEntryBtnDiv">
