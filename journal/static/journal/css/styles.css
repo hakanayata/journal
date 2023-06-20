@@ -36,3 +36,37 @@ p {
 .nav-item.dropdown {
     list-style-type: none;
 }
+
+/* truncate the content longer than 3 lines */
+/* ? doesn't work on safari */
+/* .line-clamp {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+} */
+
+.line-clamp {
+	display            : block;
+	display            : -webkit-box;
+	-webkit-box-orient : vertical;
+	position           : relative;
+	overflow           : hidden;
+	text-overflow      : ellipsis;
+	padding            : 0 !important;
+    line-height: var(--line-height,1.5) !important;
+}
+
+
+.line-clamp-3 {
+	-webkit-line-clamp : 3;
+	height             : calc(1em * var(--line-height, 1.5) * 3);
+}
+
+
+@media (max-width: 370px) {
+    #activityBoard td {
+        width: calc(10vw);
+        height: calc(10vw);
+    }
+}

@@ -11,8 +11,8 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
-    # class Meta:
-    #     ordering = ["name"]
+    class Meta:
+        ordering = ["name"]
 
 
 class JournalEntry(models.Model):
@@ -49,4 +49,4 @@ class JournalEntry(models.Model):
         }
 
     class Meta:
-        ordering = ["-created_at"]
+        ordering = ["-date"]

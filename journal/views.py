@@ -170,7 +170,28 @@ def update_entry(request, date_str):
         return JsonResponse({"error": "Only PUT method allowed"}, status=400)
 
 
+@require_GET
+@login_required
+def all_entries(request):
+    # Query for entries
+    try:
+        entries = JournalEntry.objects.filter(
+            user=request.user)
+        # 10 objects per page
+        paginator = Paginator(entries, 10)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+    except:
+        messages.error(request, "Could not retrieve data.")
+        return render(request, "journal/all_entries.html")
+
+    return render(request, "journal/all_entries.html", {
+        "page_entries": page_obj,
+    })
+
 # todo: API
+
+
 @login_required
 def entry(request, entry_id):
     # Query for requested entry
@@ -205,7 +226,6 @@ def entries(request):
         entries = None
         return JsonResponse({"error": "No entry found."})
 
-    entries = entries.order_by("-created_at").all()
     # in order to serialize non-dict objects -> safe=False
     return JsonResponse([entry.serialize() for entry in entries], safe=False)
 

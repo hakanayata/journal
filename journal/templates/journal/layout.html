@@ -30,7 +30,10 @@
           <div class="offcanvas-body lead">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
+                <a class="nav-link" href="{% url 'index' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'all_entries' %}">All Entries</a>
               </li>
               {% if user.is_authenticated %}
               <li class="nav-item">
@@ -78,7 +81,7 @@
     {% block body %}
 
     {% endblock %}
-    <footer class="fixed-bottom my-2 py-1 small text-center text-body-tertiary">
+    <footer class="my-2 py-1 small text-center text-body-tertiary">
         Harvard CS50W Final Project "Journal" by
         <a
             class="link-primary link-opacity-75"

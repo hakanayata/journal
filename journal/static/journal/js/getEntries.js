@@ -127,7 +127,7 @@ const displayDaysEntry = (entry, date) => {
         console.log(entry);
         // * today's entry exists
         const daysEntryDiv = document.createElement("div")
-        daysEntryDiv.className = "px-2 w-100"
+        daysEntryDiv.className = "px-2 text-break w-100"
         daysEntryDiv.innerHTML = entry.content
 
         const entryFooterDiv = document.createElement("div")
