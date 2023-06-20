@@ -212,6 +212,16 @@ def entry(request, entry_id):
 
         return HttpResponse(status=204)
 
+    elif request.method == "POST":
+        try:
+            entry.delete()
+        except:
+            messages.error(request, "Could not delete!")
+            return HttpResponseRedirect(reverse("index"))
+
+        messages.success(request, "Entry deleted.")
+        return HttpResponseRedirect(reverse("all_entries"))
+
     else:
         return JsonResponse({"error": "GET, PUT or DELETE request required."}, status=400)
 
