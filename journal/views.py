@@ -177,6 +177,14 @@ def all_entries(request):
     try:
         entries = JournalEntry.objects.filter(
             user=request.user)
+
+        month_filter = request.GET.get("month")
+        year_filter = request.GET.get("year")
+        if month_filter and year_filter:
+            month_filter = int(month_filter)
+            year_filter = int(year_filter)
+            entries = JournalEntry.objects.filter(
+                user=request.user, date__month=month_filter, date__year=year_filter)
         # 10 objects per page
         paginator = Paginator(entries, 10)
         page_number = request.GET.get("page")
