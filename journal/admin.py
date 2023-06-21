@@ -5,7 +5,7 @@ from .models import JournalEntry, Tag
 
 
 class JournalAdmin(admin.ModelAdmin):
-    list_display = ["id", "content", "user", "date"]
+    list_display = ("date", "id", "user", "content")
 
 
 admin.site.register(JournalEntry, JournalAdmin)
