@@ -54,9 +54,9 @@
                     <div class="modal-footer">
                         <form action="{% url 'entry' entry.id %}" method="post">
                             {% csrf_token %}
-                            <input class="btn btn-danger px-3" type="submit" value="Delete">
+                            <input class="btn btn-outline-danger px-3" type="submit" value="Delete">
                         </form>
-                        <button type="button" class="btn btn-warning px-4">
+                        <button type="button" class="btn btn-outline-primary px-4">
                             <a class="nav-link" href="{% url 'update_entry' entry.date %}">Edit</a>
                         </button>
                     </div>
