@@ -124,7 +124,7 @@ const displayDaysEntry = (entry, date) => {
         // daysEntryParentDiv.insertAdjacentElement("afterend", newEntryBtnDiv)
         daysEntryParentDiv.appendChild(noEntryParEl)
     } else {
-        console.log(entry);
+        // console.log(entry);
         // * today's entry exists
         const daysEntryDiv = document.createElement("div")
         daysEntryDiv.className = "px-2 text-break w-100"
