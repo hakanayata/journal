@@ -81,7 +81,7 @@
 
     {% if messages %}
         {% for message in messages %}
-        <div class="alert {% if message.tags == 'error' %} alert-danger {% else %} alert-{{ message.tags }} {% endif %} shadow-lg" id="alert" role="alert" style="position: fixed; right: 20px; top: 20px; z-index: 2; max-width: 240px; ">
+        <div class="alert {% if message.tags == 'error' %} alert-danger {% else %} alert-{{ message.tags }} {% endif %} shadow-lg" id="alert" role="alert" style="position: fixed; right: 10px; top: 64px; z-index: 2; max-width: calc(100% - 20px); ">
             {{ message }}
         </div>
         {% endfor %}

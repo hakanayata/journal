@@ -27,7 +27,7 @@ const displayAlert = (type, data) => {
     const alertDiv = document.createElement("div")
     alertDiv.setAttribute("class", `alert alert-${type === 'info' ? 'info' : type === 'success' ? 'success' : 'danger'} shadow-lg`)
     alertDiv.setAttribute("role", "alert")
-    alertDiv.setAttribute("style", "position: fixed; right: 10px; top: 10px; z-index: 2; max-width: 320px !important;")
+    alertDiv.setAttribute("style", "position: fixed; right: 10px; top: 64px; z-index: 2; calc(100% - 20px);")
     if (type === "error") {
         alertDiv.innerHTML = `${data.message}`
     } else {

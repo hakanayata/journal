@@ -1,6 +1,5 @@
 import json
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import AnonymousUser
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
@@ -12,8 +11,6 @@ from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
 from .models import User, JournalEntry, Tag
 from .forms import EntryForm
-from datetime import datetime, time, timedelta
-from django.utils import timezone
 
 
 @login_required(login_url="login")
@@ -34,9 +31,8 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "journal/login.html", {
-                "message": "Invalid username and/or password."
-            })
+            messages.info(request, "Invalid username and/or password.")
+            return render(request, "journal/login.html")
     else:
         return render(request, "journal/login.html")
 
@@ -64,9 +60,8 @@ def register(request):
             user = User.objects.create_user(username, email, password)
             user.save()
         except IntegrityError:
-            return render(request, "journal/register.html", {
-                "message": "Username already taken."
-            })
+            messages.info(request, "Username already taken.")
+            return render(request, "journal/register.html")
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
@@ -114,7 +109,8 @@ def create_entry(request, date_str):
                     name=tag_name.strip())
                 entry.tags.add(tag)
 
-            messages.success(request, "Entry saved!")
+            messages.success(
+                request, "Entry saved saved saved saved saved saved saved saved saved saved saved!")
             return HttpResponseRedirect(reverse("index"))
         else:
             messages.error(request, "Error occured!")
@@ -220,6 +216,8 @@ def entry(request, entry_id):
 
         return HttpResponse(status=204)
 
+    # can't use delete in html
+    # html form only has get n post
     elif request.method == "POST":
         try:
             entry.delete()

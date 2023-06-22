@@ -5,12 +5,6 @@
 
     <h2 class="display-4 mb-3">Register</h2>
 
-    {% if message %}
-        <div class="alert alert-info shadow-lg" id="alert" role="alert" style="position: fixed; right: 20px; top: 20px; z-index: 2;">
-            {{ message }}
-        </div>
-    {% endif %}
-
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
         <div class="form-floating mb-3">
