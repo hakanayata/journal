@@ -34,7 +34,8 @@ p {
 }
 
 #profileTable tr > td:first-child {
-    font-weight: bold;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 .nav-item.dropdown {
