@@ -1,4 +1,4 @@
-tbody td:hover {
+#activityBoard tbody td:hover {
     opacity: 0.75;
 }
 
@@ -31,7 +31,11 @@ p {
 
 #boardHead td {
     background-color: none;
-} 
+}
+
+#profileTable tr > td:first-child {
+    font-weight: bold;
+}
 
 .nav-item.dropdown {
     list-style-type: none;
