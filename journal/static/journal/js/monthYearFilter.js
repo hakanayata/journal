@@ -53,4 +53,25 @@ document.addEventListener("DOMContentLoaded", () => {
     submitInput.value = "Apply Filters"
 
     filterForm.appendChild(submitInput)
+
+    // disable filter on page load
+    submitInput.disabled = true
+
+    const toggleDisable = () => {
+        if (selectMonthEl.value !== "Month" && selectYearEl.value !== "Year") {
+            submitInput.disabled = false
+        } else {
+            submitInput.disabled = true
+        }
+    }
+
+    selectMonthEl.addEventListener("change", () => {
+        toggleDisable()
+    })
+
+    selectYearEl.addEventListener("change", () => {
+        toggleDisable()
+    })
+
+
 })
