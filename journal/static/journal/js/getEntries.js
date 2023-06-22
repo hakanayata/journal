@@ -83,7 +83,6 @@ async function deleteEntry(entryID) {
 
 // * displays specific day's entry
 const displayDaysEntry = (entry, date) => {
-    console.log(entry);
     // * clean everything in daysEntry
     daysEntryParentDiv.innerHTML = ""
     newEntryBtnDiv.innerHTML = ""
