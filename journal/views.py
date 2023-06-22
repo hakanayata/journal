@@ -13,6 +13,7 @@ from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
 from .models import User, JournalEntry, Tag
 from .forms import EntryForm
+from .utils import calculate_longest_streak
 
 
 @login_required(login_url="login")
@@ -201,7 +202,17 @@ def all_entries(request):
 
 
 def profile(request):
-    return render(request, "journal/profile.html")
+    try:
+        entries = JournalEntry.objects.filter(
+            user=request.user).order_by("date")
+    except:
+        messages.error(request, "Could not fetch data.")
+        return render(request, "journal/profile.html")
+
+    return render(request, "journal/profile.html", {
+        "entry_count": entries.count(),
+        "longest_streak": calculate_longest_streak(entries)
+    })
 
 # todo: API
 
