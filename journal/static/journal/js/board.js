@@ -1,7 +1,7 @@
 const currentDate = new Date()
 const curYearAndMonth = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`
 // returns "YYYY-mm-dd" of given day
-const getNthDaysDate = (n) => new Date(new Date().setDate(n)).toISOString().slice(0, 10)
+const getNthDaysDate = (n) => new Date(new Date().setUTCDate(n)).toISOString().substring(0, 10)
 const getDaysOfCurMonth = () => {
     const currentYear = currentDate.getFullYear()
     const nextMonth = currentDate.getMonth() + 1
