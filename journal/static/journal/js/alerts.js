@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const localeDate = new Date(alertDiv.textContent.trim().split("Entry already exists on")[1]).toLocaleDateString()
             alertDiv.textContent = `Entry already exists on ${localeDate}.`
         }
-        setTimeout(() => {
-            alertDiv.style.display = "none"
-        }, 3000);
+        // setTimeout(() => {
+        //     alertDiv.style.display = "none"
+        // }, 3000);
     }
 })

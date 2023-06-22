@@ -30,13 +30,14 @@ const displayAlert = (type, data) => {
     alertDiv.setAttribute("style", "position: fixed; right: 10px; top: 64px; z-index: 2; calc(100% - 20px);")
     if (type === "error") {
         alertDiv.innerHTML = `${data.message}`
+        document.body.appendChild(alertDiv)
     } else {
         alertDiv.innerHTML = data
+        document.body.appendChild(alertDiv)
+        setTimeout(() => {
+            alertDiv.remove()
+        }, 2500);
     }
-    document.body.appendChild(alertDiv)
-    setTimeout(() => {
-        alertDiv.remove()
-    }, 2500);
 }
 
 // * returns every entries
