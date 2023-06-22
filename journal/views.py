@@ -1,5 +1,7 @@
 import json
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
@@ -51,10 +53,14 @@ def register(request):
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         if password != confirmation:
-            return render(request, "journal/register.html", {
-                "message": "Passwords must match."
-            })
+            messages.info(request, "Passwords must match.")
+            return render(request, "journal/register.html")
 
+        try:
+            validate_password(password=password)
+        except ValidationError as error:
+            messages.error(request, f"{' '.join(error.messages)}")
+            return render(request, "journal/register.html")
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password)
@@ -192,6 +198,10 @@ def all_entries(request):
     return render(request, "journal/all_entries.html", {
         "page_entries": page_obj,
     })
+
+
+def profile(request):
+    return render(request, "journal/profile.html")
 
 # todo: API
 
