@@ -6,8 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const localeDate = new Date(alertDiv.textContent.trim().split("Entry already exists on")[1]).toLocaleDateString()
             alertDiv.textContent = `Entry already exists on ${localeDate}.`
         }
-        // setTimeout(() => {
-        //     alertDiv.style.display = "none"
-        // }, 3000);
+
+        if (!alertDiv.classList.contains("alert-danger")) {
+            setTimeout(() => {
+                alertDiv.style.display = "none"
+            }, 3000);
+        }
     }
 })

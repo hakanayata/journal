@@ -116,8 +116,7 @@ def create_entry(request, date_str):
                     name=tag_name.strip())
                 entry.tags.add(tag)
 
-            messages.success(
-                request, "Entry saved saved saved saved saved saved saved saved saved saved saved!")
+            messages.success(request, "Entry saved.")
             return HttpResponseRedirect(reverse("index"))
         else:
             messages.error(request, "Error occured!")
