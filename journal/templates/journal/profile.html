@@ -1,0 +1,15 @@
+{% extends 'journal/layout.html' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="border rounded-3 p-3 my-3">
+        <p>Username: {{ user.username }}</p>
+        {% if user.email  %}
+        <p>Email: {{ user.email }}</p>
+        {% endif %}
+        <p>Member since: {{ user.date_joined|date }}</p>
+    </div>
+</div>
+
+{% endblock %}
