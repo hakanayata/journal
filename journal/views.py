@@ -4,7 +4,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_GET, require_http_methods
@@ -32,6 +32,15 @@ def login_view(request):
         # Check if authentication successful
         if user is not None:
             login(request, user)
+
+            # redirect user to the original page...
+            # ...they were trying to access
+            next_url = request.POST.get("next")
+            print(next_url)
+            if next_url:
+                return redirect(next_url)
+
+            # default redirect
             return HttpResponseRedirect(reverse("index"))
         else:
             messages.info(request, "Invalid username and/or password.")
@@ -173,7 +182,7 @@ def update_entry(request, date_str):
 
 
 @require_GET
-@login_required
+@login_required(login_url="login")
 def all_entries(request):
     # Query for entries
     try:
@@ -200,6 +209,7 @@ def all_entries(request):
     })
 
 
+@login_required(login_url="login")
 def profile(request):
     try:
         entries = JournalEntry.objects.filter(
@@ -216,7 +226,7 @@ def profile(request):
 # todo: API
 
 
-@login_required
+@login_required(login_url="login")
 def entry(request, entry_id):
     # Query for requested entry
     try:
@@ -253,7 +263,7 @@ def entry(request, entry_id):
 
 
 @require_GET
-@login_required
+@login_required(login_url="login")
 def entries(request):
     # Query for entries
     try:
@@ -267,7 +277,7 @@ def entries(request):
 
 
 @require_GET
-@login_required
+@login_required(login_url="login")
 def entry_on(request, date):
     # Query for the day
     try:
