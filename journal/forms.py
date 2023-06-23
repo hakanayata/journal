@@ -1,5 +1,6 @@
 from django import forms
 from .models import JournalEntry
+from django.contrib.auth.forms import PasswordChangeForm
 from tinymce.widgets import TinyMCE
 
 
@@ -60,3 +61,30 @@ class EntryForm(forms.ModelForm):
     #             "rows": 10
     #         }),
     #     }
+
+
+class ChangePasswordCustomForm(PasswordChangeForm):
+    # remove colon ":" suffix from labels
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.label_suffix = ""
+
+    old_password = forms.CharField(widget=forms.PasswordInput(attrs={
+        "class": "form-control",
+        "placeholder": "Old password"
+    }))
+
+    new_password1 = forms.CharField(widget=forms.PasswordInput(attrs={
+        "autocomplete": "new-password",
+        "class": "form-control",
+        "placeholder": "New password"
+    }), label="New password")
+
+    new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={
+        "autocomplete": "new-password",
+        "class": "form-control",
+        "placeholder": "Confirm new password"
+    }), label="Confirm new password")
+
+    class Meta:
+        fields = ["old_password", "new_password1", "new_password2"]

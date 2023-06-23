@@ -1,5 +1,5 @@
 import json
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.views.decorators.csrf import csrf_exempt
 from .models import User, JournalEntry, Tag
-from .forms import EntryForm
+from .forms import EntryForm, ChangePasswordCustomForm
 from .utils import calculate_longest_streak
 
 
@@ -82,6 +82,28 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "journal/register.html")
+
+
+@login_required(login_url="login")
+@require_http_methods(["GET", "POST"])
+def change_password(request):
+    if request.method == "POST":
+        form = ChangePasswordCustomForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Keep the user logged in
+            update_session_auth_hash(request, user)
+            messages.success(request, "Password updated.")
+            return redirect("profile")
+        else:
+            messages.error(
+                request, "Could not update password. Please correct the error(s).")
+    else:
+        form = ChangePasswordCustomForm(user=request.user)
+
+    return render(request, "journal/change_password.html", {
+        "form": form
+    })
 
 
 @require_http_methods(["GET", "POST"])
@@ -223,7 +245,7 @@ def profile(request):
         "longest_streak": calculate_longest_streak(entries)
     })
 
-# todo: API
+# API
 
 
 @login_required(login_url="login")

@@ -33,6 +33,10 @@ p {
     background-color: none;
 }
 
+#profileTable tr {
+    line-height: 34px;
+}
+
 #profileTable tr > td:first-child {
     font-size: 15px;
     font-weight: 500;

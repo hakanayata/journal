@@ -3,11 +3,15 @@
 {% block body %}
 
 <div class="container d-grid col-12 col-lg-6 mt-2 mx-auto">
-    <div class="border rounded-2 pt-3 px-1 my-3">
+    <div class="border rounded-2 pt-3 px-2 my-3">
         <table class="table table-striped" id="profileTable">
             <tr>
                 <td>Username</td>
                 <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><a class="btn btn-light btn-sm rounded-pill my-0 py-1 px-4" href="{% url 'change_password' %}">Change Password</a></td>
             </tr>
             {% if user.email  %}
             <tr>
