@@ -70,7 +70,10 @@ def register(request):
             validate_password(password=password)
         except ValidationError as error:
             messages.error(request, f"{' '.join(error.messages)}")
-            return render(request, "journal/register.html")
+            return render(request, "journal/register.html", {
+                "username": username,
+                "email": email
+            })
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password)

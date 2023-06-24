@@ -8,11 +8,19 @@
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
         <div class="form-floating mb-3">
+            {% if username %}
+            <input class="form-control" type="text" name="username" placeholder="Username" value="{{ username }}" required>
+            {% else %}
             <input class="form-control" autofocus type="text" name="username" placeholder="Username" required>
+            {% endif %}
             <label>Username</label>
         </div>
         <div class="form-floating mb-3">
+            {% if email %}
+            <input class="form-control" type="email" name="email" placeholder="Email Address" value="{{ email }}" required>
+            {% else %}
             <input class="form-control" type="email" name="email" placeholder="Email Address" required>
+            {% endif %}
             <label>Email</label>
         </div>
         <div class="form-floating mb-3">
