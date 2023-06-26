@@ -1,4 +1,3 @@
-let daysView
 let daysEntryParentDiv
 let daysHeadingEl
 let newEntryBtnDiv
@@ -7,7 +6,6 @@ let csrfToken
 const originURL = window.location.origin
 
 document.addEventListener("DOMContentLoaded", () => {
-    daysView = document.getElementById("daysView")
     daysEntryParentDiv = document.getElementById("daysEntry")
     daysHeadingEl = document.getElementById("daysHeading")
     newEntryBtnDiv = document.getElementById("newEntryBtnDiv")
@@ -25,22 +23,26 @@ const dateObjToYYYYmmdd = (date) => {
 // * displays alert notification
 const displayAlert = (type, data) => {
     const alertDiv = document.createElement("div")
-    alertDiv.setAttribute("class", `alert alert-${type === 'info' ? 'info' : type === 'success' ? 'success' : 'danger'} shadow-lg`)
+    alertDiv.setAttribute("class", `alert alert-${type === 'info' ? 'info' : type === 'success' ? 'success' : 'danger'} ${type === 'error' && 'alert-dismissible fade show'} shadow-lg`)
     alertDiv.setAttribute("role", "alert")
     alertDiv.setAttribute("style", "position: fixed; right: 10px; top: 64px; z-index: 2; calc(100% - 20px);")
     if (type === "error") {
         alertDiv.innerHTML = `${data.message}`
+        const closeBtn = `
+            <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
+        `
+        alertDiv.innerHTML += closeBtn
         document.body.appendChild(alertDiv)
     } else {
         alertDiv.innerHTML = data
         document.body.appendChild(alertDiv)
         setTimeout(() => {
             alertDiv.remove()
-        }, 2500);
+        }, 2000);
     }
 }
 
-// * returns every entries
+// * returns all entries
 async function getEntries() {
     // once run, do not fetch data again
     if (data) return data
