@@ -2,6 +2,8 @@ const currentDate = new Date()
 const curYearAndMonth = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`
 // returns "YYYY-mm-dd" of given day
 const getNthDaysDate = (n) => new Date(new Date().setUTCDate(n)).toISOString().substring(0, 10)
+
+// Returns number of days of the current month
 const getDaysOfCurMonth = () => {
     const currentYear = currentDate.getFullYear()
     const nextMonth = currentDate.getMonth() + 1
@@ -20,7 +22,7 @@ const totalDaysIncludingOffset = daysInCurMonth + indexOfStartAtNthDay
 const daysInLastWeek = totalDaysIncludingOffset % 7 === 0 ? 7 : totalDaysIncludingOffset % 7
 const numberOfWeeks = Math.ceil(totalDaysIncludingOffset / 7)
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     const boardHead = document.getElementById("boardHead")
 
     // * create table body
@@ -94,7 +96,5 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
+
 })
-
-
-
