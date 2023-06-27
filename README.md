@@ -9,7 +9,7 @@
 
 ## Distinctiveness and Complexity
 
-My final project satisfies the distinctiveness and complexity requirements for the following elements:
+My final project satisfies the distinctiveness and complexity requirements because of the following elements:
 
 1. This project is specifically focuses on "Productivity" and designed as a productivity tool. It provides users with a dedicated platform to journal their daily experiences, thoughts, and ideas in an organized manner, enhancing their productivity and well-being.
 2. Journal App features a dynamic & interactive calendar which I built from scratch to motivate users to keep journaling without skipping a day. The calendar allows users to navigate through dates and view their journal entries for specific days in an intuitive way.
