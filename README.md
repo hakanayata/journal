@@ -2,10 +2,17 @@
 
 ## Harvard CS50W: Web Programming with Python and JavaScript - Final Project 
 
+## Table Of Contents
+    - [Description](#description)
+    - [Demo](#demo)
+    - [Distinctiveness and Complexity](#distinctiveness-and-complexity)
+    - [Files](#files)
+    - [Contact](#contact)
 
 ## Description
 ...
 
+## Demo
 
 ## Distinctiveness and Complexity
 
@@ -17,3 +24,37 @@ My final project satisfies the distinctiveness and complexity requirements becau
 4. Journal App includes a feature that calculates and displays user's longest streak of consecutive journaling days. This functionality was built form scratch to motivate users to maintain a consistent journaling habit.
 5. The app has a feature that allows users to filter their journal entries by month and year. This helps them to gain insights and reflect on their past experiences.
 6. After its submission, this project will be deployed to Python Anywhere, a platform for hosting and running Django applications. As a by-product of this deployment, MySQL will be the choice of database rather than SQLite. Moreover, the deployment will ensure that the app is accessible online, allowing users to use its features from any device with an internet connection.
+
+## Files
+
+File structure
+
+- `final_project`: root
+    - `journal`: application's main directory
+      - `migrations`
+      - `static`
+      - `templates`
+      - `__init__.py`
+      - `admin.py`
+      - `apps.py`
+      - `forms.py`
+      - `models.py`
+      - `test.py`
+      - `urls.py`
+      - `utils.py`
+      - `views.py`
+    - `main`: project's main directory
+      - `__init__.py`
+      - `asgi.py`
+      - `settings.py`
+      - `urls.py`
+      - `wsgi.py`
+    - `.env`
+    - `db.sqlite3`
+    - `manage.py`
+    - `README.md`
+    - `requirements.txt`
+  
+
+## Contact
+...
