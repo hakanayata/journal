@@ -4,11 +4,14 @@
 
 ## Table Of Contents
 
-    - [Description](#description)
-    - [Demo](#demo)
-    - [Distinctiveness and Complexity](#distinctiveness-and-complexity)
-    - [Files](#files)
-    - [Contact](#contact)
+- [JOURNAL APP](#journal-app)
+  - [Harvard CS50W: Web Programming with Python and JavaScript - Final Project](#harvard-cs50w-web-programming-with-python-and-javascript---final-project)
+  - [Table Of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Demo](#demo)
+  - [Distinctiveness and Complexity](#distinctiveness-and-complexity)
+  - [Files](#files)
+  - [Contact](#contact)
 
 ## Description
 ...
