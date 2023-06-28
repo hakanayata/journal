@@ -3,11 +3,12 @@
 ## Harvard CS50W: Web Programming with Python and JavaScript - Final Project 
 
 ## Table Of Contents
-    - [Description](https://github.com/hakanayata/journal#description)
-    - [Demo](https://github.com/hakanayata/journal#demo)
-    - [Distinctiveness and Complexity](https://github.com/hakanayata/journal#distinctiveness-and-complexity)
-    - [Files](https://github.com/hakanayata/journal#files)
-    - [Contact](https://github.com/hakanayata/journal#contact)
+
+    - [Description](#description)
+    - [Demo](#demo)
+    - [Distinctiveness and Complexity](#distinctiveness-and-complexity)
+    - [Files](#files)
+    - [Contact](#contact)
 
 ## Description
 ...
