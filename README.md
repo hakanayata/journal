@@ -17,10 +17,10 @@
 ## Description
 Journal App is a productivity-focused web application that helps users to create and manage their journal entries in an organized manner. It provides a platform for users to record their thoughts and daily experiences, enhancing their productivity and personal growth.
 
-This full-fledged web application was built using Django Web Framework, JavaScript, and Bootstrap.
+This full-fledged web application was built as a [final project](https://cs50.harvard.edu/web/2020/projects/final/capstone/) for [CS50's Web Programming course](https://cs50.harvard.edu/web/2020/) using Django Web Framework, JavaScript, and Bootstrap.
 
 ## Demo
-...
+Watch demo: [YouTube](...)
 
 ## Distinctiveness and Complexity
 
@@ -65,7 +65,7 @@ File structure (Only the files I created and modified have description.)
       - `__init__.py`
       - `asgi.py`
       - `settings.py`: project's and text editor's configuration file.
-      - `urls.py`
+      - `urls.py`: Specifies the URL patterns and their corresponding views for project.
       - `wsgi.py`
     - `.env`: Contains private information such as Djagno's secret key.
     - `.gitignore`: Defines the files to be ignored by Git.
@@ -90,4 +90,4 @@ To run the Journal App locally, follow these steps:
 7. Access the app by visiting `http://localhost:8000` in a web browser of your choice.
 
 ## Contact
-...
+I'm [Hakan](https://hakanayata.com). You could reach me at info@hakanayata.com
