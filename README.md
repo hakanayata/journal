@@ -22,12 +22,14 @@ This full-fledged web application was built as a [final project](https://cs50.ha
 ## Demo
 Watch demo: [YouTube](...)
 
+Test the app: [PythonAnywhere](...)
+
 ## Distinctiveness and Complexity
 
 My final project satisfies the distinctiveness and complexity requirements because of the following elements:
 
 1. This project is specifically focuses on "Productivity" and designed as a productivity tool. It provides users with a dedicated platform to journal their daily experiences, thoughts, and ideas in an organized manner, increasing their productivity and well-being.
-2. Journal App features a dynamic & interactive calendar-like activity board which I built from scratch to motivate users to keep journaling without skipping a day. The board allows users to navigate through dates and view their journal entries for specific days in an intuitive way.
+2. Journal App features a dynamic & interactive calendar-like activity board which was built from scratch to motivate users to keep journaling without skipping a day. The board allows users to navigate through dates and view their journal entries for specific days in an intuitive way.
 3. This project utilizes a rich text editor for entries' content field instead of a simple text field, helping users to format their entries with features like bold, italic text. This enhances the writing experience and enables users to be more expressive at journaling.
 4. Journal App includes a feature that calculates and displays user's longest streak of consecutive journaling days. This functionality was built form scratch to motivate users to maintain a consistent journaling habit.
 5. The app has a feature that allows users to filter their journal entries by month and year. This helps them to gain insights and reflect on their past experiences.
@@ -37,7 +39,7 @@ My final project satisfies the distinctiveness and complexity requirements becau
 
 File structure (Only the files I created and modified have description.)
 
-- `final_project`: Root.
+- `final_project`: Root directory.
     - `journal`: Application's main directory.
       - `migrations`
       - `static/journal`: Holds the static files
@@ -78,16 +80,28 @@ File structure (Only the files I created and modified have description.)
 ## Running the Application
 To run the Journal App locally, follow these steps:
 
-1. Clone the project repository.
-2. Open a terminal and navigate to the project's main directory.
-3. Create a virtual environment (optional but recommended) and activate it.
-4. Install the required Python packages by running the following command:
-    `pip install -r requirements`
-5. Apply the database migrations by executing the following command:
-    `python manage.py migrate`
-6. Start the development server:
-    `python manage.py runserver`
-7. Access the app by visiting `http://localhost:8000` in a web browser of your choice.
+1. Make sure you have Python installed on your system.
+2. Clone the project repository.
+3. Open a terminal and navigate to the project's main directory.
+4. Create a virtual environment (optional but recommended) and activate it.
+5. Install the required Python packages by running the following command:
+    ```
+    pip install -r requirements
+    ```
+6. Apply the database migrations by executing the following command:
+    ```
+    python manage.py migrate
+    ```
+7. Start the development server:
+    ```
+    python manage.py runserver
+    ```
+8. Access the app by visiting `http://localhost:8000` in a web browser of your choice.
+9. Create a new account, or simply use the following credentials to log in:
+    ```
+    username: admin
+    password: admin
+    ```
 
 ## Contact
 I'm [Hakan](https://hakanayata.com). You could reach me at info@hakanayata.com
