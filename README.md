@@ -97,11 +97,7 @@ To run the Journal App locally, follow these steps:
     python manage.py runserver
     ```
 8. Access the app by visiting `http://localhost:8000` in a web browser of your choice.
-9. Create a new account, or simply use the following credentials to log in:
-    ```
-    username: admin
-    password: admin
-    ```
+9. Create a new account, and start using the Journal App.
 
 ## Contact
 I'm [Hakan](https://hakanayata.com). You could reach me at info@hakanayata.com
