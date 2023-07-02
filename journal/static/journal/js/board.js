@@ -13,7 +13,20 @@ const getDaysOfCurMonth = () => {
     return daysInCurrentMonth
 }
 
-const daysInCurMonth = getDaysOfCurMonth()
+// Returns number of days of the current month
+const getDaysOfMonth = (monthIdx, year) => {
+    const nextMonthIdx = monthIdx + 1
+    // parameter "0" gives us the last day of prev. month 
+    const daysInMonth = new Date(year, nextMonthIdx, 0).getDate()
+    return daysInMonth
+}
+
+// formats board label
+const formatBoardLabel = (monthIdx, year) => {
+    return `${new Date(year, monthIdx).toLocaleDateString("default", { month: "long" })}, ${year}`
+}
+
+const daysInCurMonth = getDaysOfMonth(currentDate.getMonth(), currentDate.getFullYear())
 // if Thursday, getDay() returns 4, it's one-based instead of zero
 const startsAtNthDay = new Date(new Date().setDate(1)).getDay()
 // get zero-based index (0 - 6)
@@ -23,6 +36,8 @@ const daysInLastWeek = totalDaysIncludingOffset % 7 === 0 ? 7 : totalDaysIncludi
 const numberOfWeeks = Math.ceil(totalDaysIncludingOffset / 7)
 
 document.addEventListener("DOMContentLoaded", () => {
+    const boardLabel = document.getElementById("boardLabel")
+    boardLabel.textContent = formatBoardLabel(currentDate.getMonth(), currentDate.getFullYear())
     const boardHead = document.getElementById("boardHead")
 
     // * create table body

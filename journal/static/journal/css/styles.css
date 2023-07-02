@@ -10,6 +10,7 @@ p {
     border-collapse: separate;
     border-spacing: 6px;
     border: 1px solid #ddd;
+    margin-top: 4px;
 }
 
 
@@ -31,6 +32,13 @@ p {
 
 #boardHead td {
     background-color: none;
+}
+
+#boardLabel {
+    width: 322px;
+    margin: 1rem auto 0;
+    letter-spacing: 2px;
+    color: #fd3d38;
 }
 
 #profileTable tr {
