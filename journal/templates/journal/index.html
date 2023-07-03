@@ -6,7 +6,11 @@
 <div class="container" id="indexView">
     <input type="hidden" name="csrfToken" value="{{ csrf_token }}" style="display: none;" id="csrfToken">
     <div id="boardDiv">
-        <h1 class="fw-normal lead" id="boardLabel"></h1>
+        <div class="d-flex align-items-center justify-content-between mx-auto" id="boardLabelDiv">
+            <span class="display-6" role="button" id="prevMonthBtn"><</span>
+            <h1 class="display-6 m-0" id="boardLabel"></h1>
+            <span class="display-6" role="button" id="nextMonthBtn">></span>
+        </div>
         <table class="mx-auto mb-3 p-1 rounded-2 shadow-sm" id="activityBoard">
             <thead class="d-flex align-items-center justify-content-center gap-2 mb-2" id="boardHead">
                 <tr class="d-flex align-items-center justify-content-center gap-2">

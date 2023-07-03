@@ -6,7 +6,8 @@ const getYYYYmmOfDate = (monthIdx, year) => {
 }
 
 // Returns "YYYY-mm-dd" of given day
-const getNthDaysDate = (n) => new Date(new Date().setUTCDate(n)).toISOString().substring(0, 10)
+// const getNthDaysDate = (n) => new Date(new Date().setUTCDate(n)).toISOString().substring(0, 10)
+const getNthDaysDate = (monthIdx, year, n) => new Date(new Date(year, monthIdx + 1).setUTCDate(n)).toISOString().substring(0, 10)
 
 // Returns number of days of the current month
 const getDaysOfCurMonth = () => {
@@ -28,7 +29,7 @@ const getDaysOfMonth = (monthIdx, year) => {
 
 // Returns formatted board label
 const formatBoardLabel = (monthIdx, year) => {
-    return `${new Date(year, monthIdx).toLocaleDateString("default", { month: "long" })}, ${year}`
+    return `${new Date(year, monthIdx).toLocaleDateString("default", { month: "short" })}, ${year}`
 }
 
 // Draw current month's activity board
@@ -72,7 +73,7 @@ const drawBoard = (monthIdx, year) => {
                 for (let j = indexOfStartAtNthDay; j < 7; j++) {
                     const newCell = document.createElement("td")
                     newCell.role = "button"
-                    newCell.dataset["date"] = getNthDaysDate(n + 1)
+                    newCell.dataset["date"] = getNthDaysDate(monthIdx, year, n + 1)
                     newCell.textContent = n + 1
                     n++
                     newRow.appendChild(newCell)
@@ -83,7 +84,7 @@ const drawBoard = (monthIdx, year) => {
                 for (let k = 0; k < daysInLastWeek; k++) {
                     const newCell = document.createElement("td")
                     newCell.role = "button"
-                    newCell.dataset["date"] = getNthDaysDate(n + 1)
+                    newCell.dataset["date"] = getNthDaysDate(monthIdx, year, n + 1)
                     newCell.textContent = n + 1
                     n++
                     newRow.appendChild(newCell)
@@ -94,7 +95,7 @@ const drawBoard = (monthIdx, year) => {
                 for (let l = 0; l < 7; l++) {
                     const newCell = document.createElement("td")
                     newCell.role = "button"
-                    newCell.dataset["date"] = getNthDaysDate(n + 1)
+                    newCell.dataset["date"] = getNthDaysDate(monthIdx, year, n + 1)
                     newCell.textContent = n + 1
                     n++
                     newRow.appendChild(newCell)
@@ -134,4 +135,14 @@ const drawBoard = (monthIdx, year) => {
 
 
 
+}
+
+const cleanBoard = () => {
+    const boardBody = document.querySelector("tbody")
+    boardBody.setAttribute("style", "animation-name: hide; animation-duration: 1s; animation-fill-mode: forwards; animation-timing-function: linear; -webkit-animation-timing-function: linear; animation-play-state: paused;")
+    boardBody.style.animationPlayState = "running"
+    boardBody.addEventListener("animationend", () => {
+        boardBody.innerHTML = ``
+        boardBody.remove()
+    })
 }
