@@ -1,11 +1,11 @@
 const currentDate = new Date()
 
-// Returns YYYY-mm of given date
+// Returns "YYYY-mm" of given date
 const getYYYYmmOfDate = (monthIdx, year) => {
     return `${year}-${String(monthIdx + 1).padStart(2, '0')}`
 }
 
-// returns "YYYY-mm-dd" of given day
+// Returns "YYYY-mm-dd" of given day
 const getNthDaysDate = (n) => new Date(new Date().setUTCDate(n)).toISOString().substring(0, 10)
 
 // Returns number of days of the current month
@@ -26,28 +26,17 @@ const getDaysOfMonth = (monthIdx, year) => {
     return daysInMonth
 }
 
-// formats board label
+// Returns formatted board label
 const formatBoardLabel = (monthIdx, year) => {
     return `${new Date(year, monthIdx).toLocaleDateString("default", { month: "long" })}, ${year}`
 }
-
-// const curYearAndMonth = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`
-const curYearAndMonth = getYYYYmmOfDate(currentDate.getMonth(), currentDate.getFullYear())
-
-const daysInCurMonth = getDaysOfMonth(currentDate.getMonth(), currentDate.getFullYear())
-// if Thursday, getDay() returns 4, it's one-based instead of zero
-const startsAtNthDay = new Date(new Date().setDate(1)).getDay()
-// get zero-based index (0 - 6)
-const indexOfStartAtNthDay = startsAtNthDay - 1
-const totalDaysIncludingOffset = daysInCurMonth + indexOfStartAtNthDay
-const daysInLastWeek = totalDaysIncludingOffset % 7 === 0 ? 7 : totalDaysIncludingOffset % 7
-const numberOfWeeks = Math.ceil(totalDaysIncludingOffset / 7)
 
 // Draw current month's activity board
 document.addEventListener("DOMContentLoaded", () => {
     drawBoard(currentDate.getMonth(), currentDate.getFullYear())
 })
 
+// Draws activity board
 const drawBoard = (monthIdx, year) => {
     // Existing html elements
     const boardLabelEl = document.getElementById("boardLabel")
@@ -55,6 +44,7 @@ const drawBoard = (monthIdx, year) => {
 
     // Calculations
     const date = new Date(year, monthIdx)
+    // Number of days in month
     const daysInMonth = getDaysOfMonth(date.getMonth(), date.getFullYear())
     // if Thursday, getDay() returns 4, it's one-based instead of zero
     const startsAtNthDay = new Date(new Date(year, monthIdx).setDate(1)).getDay()
@@ -74,7 +64,7 @@ const drawBoard = (monthIdx, year) => {
 
     // * create calendar-like monthly activity board
     let n = 0;
-    while (n < daysInCurMonth) {
+    while (n < daysInMonth) {
         for (let i = 0; i < numberOfWeeks; i++) {
             const newRow = document.createElement("tr")
             if (i === 0) {
