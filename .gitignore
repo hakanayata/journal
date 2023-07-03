@@ -3,7 +3,8 @@
 *.pot
 *.pyc
 __pycache__
-db.sqlite3
+# db might be needed for submission
+# db.sqlite3
 media
 
 # Backup files # 
