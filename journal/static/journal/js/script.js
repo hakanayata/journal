@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
             element.setAttribute("disabled", true)
             // Draw previous month's board on the screen
             const firstDayCell = document.querySelector("tbody")
-            console.log(firstDayCell.firstElementChild.firstElementChild.dataset.date)
             const dateBeingShowed = firstDayCell.firstElementChild.firstElementChild.dataset.date
             const oneMonthBefore = new Date(new Date(new Date(`${dateBeingShowed}`).setDate(1)).setMonth(new Date(`${dateBeingShowed}`).getMonth() - 1))
             const prevMonthIdx = oneMonthBefore.getMonth()

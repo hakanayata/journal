@@ -1,7 +1,6 @@
 {% extends 'journal/layout.html' %}
 {% load static %}
 
-
 {% block body %}
 <div class="container" id="indexView">
     <input type="hidden" name="csrfToken" value="{{ csrf_token }}" style="display: none;" id="csrfToken">
@@ -26,9 +25,8 @@
         </table>
 
     </div>
-
+    
     <hr class="border border-secondary-subtle border-1 opacity-25">
-
     
     <div id="daysView">
         <h2 class="display-4 text-center text-danger-emphasis" id="daysHeading"></h2>
@@ -39,8 +37,6 @@
             <!-- js -->
         </div>
     </div>
-
-
 
 </div>
 {% endblock %}
