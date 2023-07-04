@@ -68,6 +68,7 @@ const drawBoard = (monthIdx, year) => {
     // Table Body
     const boardBody = document.createElement("tbody")
     boardBody.className = "d-flex flex-column gap-2"
+    boardBody.setAttribute("style", "animation-name: show; animation-duration: 0.2s; animation-fill-mode: forwards; animation-timing-function: linear; -webkit-animation-timing-function: linear; animation-play-state: paused;")
 
     // * create calendar-like monthly activity board
     let n = 0;
@@ -140,12 +141,14 @@ const drawBoard = (monthIdx, year) => {
     })
 
 
+    boardBody.style.animationPlayState = "running"
+
 
 }
 
 const cleanBoard = () => {
     const boardBody = document.querySelector("tbody")
-    boardBody.setAttribute("style", "animation-name: hide; animation-duration: 0.5s; animation-fill-mode: forwards; animation-timing-function: linear; -webkit-animation-timing-function: linear; animation-play-state: paused;")
+    boardBody.setAttribute("style", "animation-name: hide; animation-duration: 0.2s; animation-fill-mode: forwards; animation-timing-function: linear; -webkit-animation-timing-function: linear; animation-play-state: paused;")
     boardBody.style.animationPlayState = "running"
     boardBody.addEventListener("animationend", () => {
         boardBody.innerHTML = ``
