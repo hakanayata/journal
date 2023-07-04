@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }).catch(err => displayAlert("error", err))
 
         } else if (element.id.startsWith("prevMonthBtn")) {
+            element.setAttribute("disabled", true)
             // Draw previous month's board on the screen
             const firstDayCell = document.querySelector("tbody")
             console.log(firstDayCell.firstElementChild.firstElementChild.dataset.date)
@@ -43,12 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
             cleanBoard()
             setTimeout(() => {
                 drawBoard(prevMonthIdx, prevMonthsYear)
-            }, 1000);
+                element.removeAttribute("disabled")
+            }, 500);
 
         } else if (element.id.startsWith("nextMonthBtn")) {
+            element.setAttribute("disabled", true)
             // Draw previous month's board on the screen
             const firstDayCell = document.querySelector("tbody")
-            console.log(firstDayCell.firstElementChild.firstElementChild.dataset.date)
             const dateBeingShowed = firstDayCell.firstElementChild.firstElementChild.dataset.date
             const oneMonthAfter = new Date(new Date().setMonth(new Date(`${dateBeingShowed}`).getMonth() + 1))
             const nextMonthIdx = oneMonthAfter.getMonth()
@@ -57,7 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
             cleanBoard()
             setTimeout(() => {
                 drawBoard(nextMonthIdx, nextMonthsYear)
-            }, 1000);
+                element.removeAttribute("disabled")
+            }, 500);
 
         } else if (element.dataset.date) {
             // Show day's entry that is being clicked
