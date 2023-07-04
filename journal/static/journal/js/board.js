@@ -47,10 +47,16 @@ const drawBoard = (monthIdx, year) => {
     const date = new Date(year, monthIdx)
     // Number of days in month
     const daysInMonth = getDaysOfMonth(date.getMonth(), date.getFullYear())
-    // if Thursday, getDay() returns 4, it's one-based instead of zero
+    // getDay() returns btw 0-6, Sunday = 0, Saturday = 6
     const startsAtNthDay = new Date(new Date(year, monthIdx).setDate(1)).getDay()
-    // get zero-based index (0 - 6)
-    const indexOfStartAtNthDay = startsAtNthDay - 1
+    // get Monday-based index
+    let indexOfStartAtNthDay
+    if (startsAtNthDay === 0) {
+        indexOfStartAtNthDay = 6
+    } else {
+        indexOfStartAtNthDay = startsAtNthDay - 1
+    }
+    // const indexOfStartAtNthDay = startsAtNthDay - 1
     const totalDaysIncludingOffset = daysInMonth + indexOfStartAtNthDay
     const daysInLastWeek = totalDaysIncludingOffset % 7 === 0 ? 7 : totalDaysIncludingOffset % 7
     const numberOfWeeks = Math.ceil(totalDaysIncludingOffset / 7)
@@ -139,7 +145,7 @@ const drawBoard = (monthIdx, year) => {
 
 const cleanBoard = () => {
     const boardBody = document.querySelector("tbody")
-    boardBody.setAttribute("style", "animation-name: hide; animation-duration: 1s; animation-fill-mode: forwards; animation-timing-function: linear; -webkit-animation-timing-function: linear; animation-play-state: paused;")
+    boardBody.setAttribute("style", "animation-name: hide; animation-duration: 0.5s; animation-fill-mode: forwards; animation-timing-function: linear; -webkit-animation-timing-function: linear; animation-play-state: paused;")
     boardBody.style.animationPlayState = "running"
     boardBody.addEventListener("animationend", () => {
         boardBody.innerHTML = ``
