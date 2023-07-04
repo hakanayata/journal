@@ -29,6 +29,10 @@ p {
     color: #339a
 }
 
+#boardDiv {
+    height: 380px;
+}
+
 #boardHead td {
     background-color: none;
 }
@@ -96,5 +100,15 @@ p {
 
     100% {
         opacity: 0;
+    }
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 100;
     }
 }
