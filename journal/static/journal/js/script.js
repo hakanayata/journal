@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const firstDayCell = document.querySelector("tbody")
             console.log(firstDayCell.firstElementChild.firstElementChild.dataset.date)
             const dateBeingShowed = firstDayCell.firstElementChild.firstElementChild.dataset.date
-            const oneMonthBefore = new Date(new Date().setMonth(new Date(`${dateBeingShowed}`).getMonth() - 1))
+            const oneMonthBefore = new Date(new Date(new Date(`${dateBeingShowed}`).setDate(1)).setMonth(new Date(`${dateBeingShowed}`).getMonth() - 1))
             const prevMonthIdx = oneMonthBefore.getMonth()
             const prevMonthsYear = oneMonthBefore.getFullYear()
 
@@ -45,14 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 drawBoard(prevMonthIdx, prevMonthsYear)
                 element.removeAttribute("disabled")
-            }, 500);
+            }, 200);
 
         } else if (element.id.startsWith("nextMonthBtn")) {
             element.setAttribute("disabled", true)
             // Draw previous month's board on the screen
             const firstDayCell = document.querySelector("tbody")
             const dateBeingShowed = firstDayCell.firstElementChild.firstElementChild.dataset.date
-            const oneMonthAfter = new Date(new Date().setMonth(new Date(`${dateBeingShowed}`).getMonth() + 1))
+            const oneMonthAfter = new Date(new Date(new Date(`${dateBeingShowed}`).setDate(1)).setMonth(new Date(`${dateBeingShowed}`).getMonth() + 1))
             const nextMonthIdx = oneMonthAfter.getMonth()
             const nextMonthsYear = oneMonthAfter.getFullYear()
 
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 drawBoard(nextMonthIdx, nextMonthsYear)
                 element.removeAttribute("disabled")
-            }, 500);
+            }, 200);
 
         } else if (element.dataset.date) {
             // Show day's entry that is being clicked
