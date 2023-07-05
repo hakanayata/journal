@@ -10,7 +10,7 @@
   - [Description](#description)
   - [Demo](#demo)
   - [Distinctiveness and Complexity](#distinctiveness-and-complexity)
-  - [Sneak Peek of the app](#sneak-peek-of-the-app)
+  - [Preview](#preview)
   - [Files](#files)
   - [Running the Application](#running-the-application)
   - [Contact](#contact)
@@ -37,9 +37,18 @@ My final project satisfies the distinctiveness and complexity requirements becau
 6. Journal App takes advantage of animations on the activity board to provide a smooth and visually appealing user experience.
 7. After its submission, this project will be deployed to Python Anywhere, a platform for hosting and running Django applications. As a by-product of this deployment, MySQL will be the choice of database rather than SQLite. Moreover, the deployment will ensure that the app is accessible online, allowing users to use its features from any device with an internet connection.
 
-## Sneak Peek of the app
-  - **login view**
+## Preview
+  - **Login view**
+
     ![Login](static/../journal/static/journal/gifs/login.gif)
+
+  - **Index page; activity board and day's view**
+  
+    ![Index](static/../journal/static/journal/gifs/index.gif)
+
+  - **New entry**
+  
+    ![New entry](static/../journal/static/journal/gifs/new_entry.gif)
 
 ## Files
 
