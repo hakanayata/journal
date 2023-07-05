@@ -1,21 +1,22 @@
-# JOURNAL APP
+# JOURNAL
 
 ## Harvard CS50W: Web Programming with Python and JavaScript - Final Project 
 
 ## Table Of Contents
 
-- [JOURNAL APP](#journal-app)
+- [JOURNAL](#journal)
   - [Harvard CS50W: Web Programming with Python and JavaScript - Final Project](#harvard-cs50w-web-programming-with-python-and-javascript---final-project)
   - [Table Of Contents](#table-of-contents)
   - [Description](#description)
   - [Demo](#demo)
   - [Distinctiveness and Complexity](#distinctiveness-and-complexity)
+  - [Sneak Peek of the app](#sneak-peek-of-the-app)
   - [Files](#files)
   - [Running the Application](#running-the-application)
   - [Contact](#contact)
 
 ## Description
-Journal App is a productivity-focused web application that helps users to create and manage their journal entries in an organized manner. It provides a platform for users to record their thoughts and daily experiences, enhancing their productivity and personal growth.
+**Journal** is a productivity-focused web application that helps users to create and manage their journal entries in an organized manner. It provides a platform for users to record their thoughts and daily experiences, enhancing their productivity and personal growth.
 
 This full-fledged web application was built as a [final project](https://cs50.harvard.edu/web/2020/projects/final/capstone/) for [CS50's Web Programming course](https://cs50.harvard.edu/web/2020/) using Django Web Framework, JavaScript, and Bootstrap.
 
@@ -33,8 +34,12 @@ My final project satisfies the distinctiveness and complexity requirements becau
 3. This project utilizes a rich text editor for entries' content field instead of a simple text field, helping users to format their entries with features like bold, italic text. This enhances the writing experience and enables users to be more expressive at journaling.
 4. Journal App includes a feature that calculates and displays user's longest streak of consecutive journaling days. This functionality was built form scratch to motivate users to maintain a consistent journaling habit.
 5. The app has a feature that allows users to filter their journal entries by month and year. This helps them to gain insights and reflect on their past experiences.
-6. Journal app takes advantage of animations to provide a smooth and visually appealing user experience.
+6. Journal App takes advantage of animations on the activity board to provide a smooth and visually appealing user experience.
 7. After its submission, this project will be deployed to Python Anywhere, a platform for hosting and running Django applications. As a by-product of this deployment, MySQL will be the choice of database rather than SQLite. Moreover, the deployment will ensure that the app is accessible online, allowing users to use its features from any device with an internet connection.
+
+## Sneak Peek of the app
+  - **login view**
+    ![Login](static/../journal/static/journal/gifs/login.gif)
 
 ## Files
 
@@ -79,7 +84,7 @@ File structure (Only the files I created and modified have description.)
   
 
 ## Running the Application
-To run the Journal App locally, follow these steps:
+To run the **Journal** locally, follow these steps:
 
 1. Make sure you have Python installed on your system.
 2. Clone the project repository.

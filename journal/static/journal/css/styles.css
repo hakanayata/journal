@@ -86,10 +86,14 @@ p {
 }
 
 
-@media (max-width: 370px) {
+@media (max-width: 375px) {
     #activityBoard td {
         width: calc(10vw);
         height: calc(10vw);
+    }
+
+    #boardLabelDiv {
+        width: 90vw;
     }
 }
 
