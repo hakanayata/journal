@@ -64,7 +64,7 @@ My final project satisfies the distinctiveness and complexity requirements becau
 
   - **Profile Page**
   
-    ![Profile Page](static/../journal/static/journal/gifs/all_entries.gif)
+    ![Profile Page](static/../journal/static/journal/gifs/profile.gif)
 
     <br>
 
