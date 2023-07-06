@@ -1,18 +1,16 @@
-# JOURNAL
-
-## Harvard CS50W: Web Programming with Python and JavaScript - Final Project 
+# Journal
 
 ## Table Of Contents
 
-- [JOURNAL](#journal)
-  - [Harvard CS50W: Web Programming with Python and JavaScript - Final Project](#harvard-cs50w-web-programming-with-python-and-javascript---final-project)
+- [Journal](#journal)
   - [Table Of Contents](#table-of-contents)
   - [Description](#description)
   - [Demo](#demo)
   - [Distinctiveness and Complexity](#distinctiveness-and-complexity)
   - [Preview](#preview)
-  - [Files](#files)
+  - [Files and directories](#files-and-directories)
   - [Running the Application](#running-the-application)
+  - [Potential Improvements To Do](#potential-improvements-to-do)
   - [Contact](#contact)
 
 ## Description
@@ -68,9 +66,9 @@ My final project satisfies the distinctiveness and complexity requirements becau
 
     <br>
 
-## Files
+## Files and directories
 
-File structure (Only the files I created and modified have description.)
+File structure (Only the files I created and modified have descriptions.)
 
 - `final_project`: Root directory.
     - `journal`: Application's main directory.
@@ -132,5 +130,15 @@ To run the **Journal** locally, follow these steps:
 8. Access the app by visiting `http://localhost:8000` in a web browser of your choice.
 9. Create a new account, and start using **Journal**.
 
+## Potential Improvements To Do
+
+1. Adding an animation for displaying entries
+2. Implementing a feature where clicking on tags lists all the entries related to that specific tag
+3. Adding dark mode to rich text editor
+4. Integrating Google Sign-In
+5. By making use of API endpoints, building the app with React Native and publishing it on the App Store 
+
 ## Contact
 I'm [Hakan](https://hakanayata.com). You could reach me at info@hakanayata.com
+
+[Go Top ➚](#journal)
