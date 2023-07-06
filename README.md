@@ -38,17 +38,35 @@ My final project satisfies the distinctiveness and complexity requirements becau
 7. After its submission, this project will be deployed to Python Anywhere, a platform for hosting and running Django applications. As a by-product of this deployment, MySQL will be the choice of database rather than SQLite. Moreover, the deployment will ensure that the app is accessible online, allowing users to use its features from any device with an internet connection.
 
 ## Preview
-  - **Login view**
+  - **Login Page**
 
     ![Login](static/../journal/static/journal/gifs/login.gif)
 
-  - **Index page; activity board and day's view**
+    <br>
+
+  - **Index Page: Activity board and day's view**
   
     ![Index](static/../journal/static/journal/gifs/index.gif)
 
-  - **New entry**
+    <br>
+
+  - **Index Page: Creating a new entry**
   
     ![New entry](static/../journal/static/journal/gifs/new_entry.gif)
+
+    <br>
+
+  - **All Entries Page**
+  
+    ![All Entries](static/../journal/static/journal/gifs/all_entries.gif)
+
+    <br>
+
+  - **Profile Page**
+  
+    ![Profile Page](static/../journal/static/journal/gifs/all_entries.gif)
+
+    <br>
 
 ## Files
 
@@ -112,7 +130,7 @@ To run the **Journal** locally, follow these steps:
     python manage.py runserver
     ```
 8. Access the app by visiting `http://localhost:8000` in a web browser of your choice.
-9. Create a new account, and start using the Journal App.
+9. Create a new account, and start using **Journal**.
 
 ## Contact
 I'm [Hakan](https://hakanayata.com). You could reach me at info@hakanayata.com
