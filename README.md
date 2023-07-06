@@ -136,7 +136,8 @@ To run the **Journal** locally, follow these steps:
 2. Implementing a feature where clicking on tags lists all the entries related to that specific tag
 3. Adding dark mode to rich text editor
 4. Integrating Google Sign-In
-5. By making use of API endpoints, building the app with React Native and publishing it on the App Store 
+5. Allowing users to add images to their entries.
+6. By making use of Django backend, building the app's frontend with React Native and publishing it on the App Store and Play Store
 
 ## Contact
 I'm [Hakan](https://hakanayata.com). You could reach me at info@hakanayata.com
