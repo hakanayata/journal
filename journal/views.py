@@ -66,6 +66,13 @@ def register(request):
             messages.info(request, "Passwords must match.")
             return render(request, "journal/register.html")
 
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email already exists!")
+            return render(request, "journal/register.html", {
+                "username": username,
+                "email": email
+            })
+
         try:
             validate_password(password=password)
         except ValidationError as error:
