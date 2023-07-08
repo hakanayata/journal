@@ -22,7 +22,7 @@ This full-fledged web application was built as a [final project](https://cs50.ha
 ## Demo
 Watch demo: [YouTube](https://youtu.be/6JQq8DfOeac)
 
-Test the app (Link will be active as of 7/9/2023): [PythonAnywhere](http://cs50journal.eu.pythonanywhere.com/)
+Test the app (Link will be active as of 7/10/2023): [PythonAnywhere](http://cs50journal.eu.pythonanywhere.com/)
 
 ## Distinctiveness and Complexity
 
