@@ -7,9 +7,10 @@
   - [Description](#description)
   - [Demo](#demo)
   - [Distinctiveness and Complexity](#distinctiveness-and-complexity)
-  - [Preview](#preview)
+  - [Preview and Features](#preview-and-features)
   - [Files and directories](#files-and-directories)
   - [Running the Application](#running-the-application)
+  - [Language \& Tools](#language--tools)
   - [Potential Improvements To Do](#potential-improvements-to-do)
   - [Contact](#contact)
 
@@ -19,9 +20,9 @@
 This full-fledged web application was built as a [final project](https://cs50.harvard.edu/web/2020/projects/final/capstone/) for [CS50's Web Programming course](https://cs50.harvard.edu/web/2020/) using Django Web Framework, JavaScript, and Bootstrap.
 
 ## Demo
-Watch demo: [YouTube](...)
+Watch demo: [YouTube](https://youtu.be/6JQq8DfOeac)
 
-Test the app: [PythonAnywhere](...)
+Test the app (Link will be active as of 7/9/2023): [PythonAnywhere](http://cs50journal.eu.pythonanywhere.com/)
 
 ## Distinctiveness and Complexity
 
@@ -35,32 +36,53 @@ My final project satisfies the distinctiveness and complexity requirements becau
 6. Journal App takes advantage of animations on the activity board to provide a smooth and visually appealing user experience.
 7. After its submission, this project will be deployed to Python Anywhere, a platform for hosting and running Django applications. As a by-product of this deployment, MySQL will be the choice of database rather than SQLite. Moreover, the deployment will ensure that the app is accessible online, allowing users to use its features from any device with an internet connection.
 
-## Preview
+## Preview and Features
+  - **Register Page**
+    - The page has validations for username, email, and password fields
+    - Password field supports "strong password suggestion" from the web browser
+    - Once valid data is provided, new `User` instance is created in database
+    
+    ![Register](static/../journal/static/journal/gifs/register.gif)
+
+    <br>
+
   - **Login Page**
+    - Supports Face ID
+    - Logs users in and redirects them to the index page
 
     ![Login](static/../journal/static/journal/gifs/login.gif)
 
     <br>
 
   - **Index Page: Activity board and day's view**
+    - The page features a dynamic and user-friendly activity board
+    - Every time user clicks on a different date on the board, it sends an HTTP request to `/entry_on/${date}` route, retrieves the entry for that day as a response, and displays it at the bottom of the page
+    - In the bottom-right corner of the entry, there is a menu button that includes editing and deleting options for the entry
   
     ![Index](static/../journal/static/journal/gifs/index.gif)
 
     <br>
 
   - **Index Page: Creating a new entry**
+    - Utilizes the TinyMCE text editor for better formatting (including bold and italic text features)
+    - Allows users to add related tags to their entries
   
     ![New entry](static/../journal/static/journal/gifs/new_entry.gif)
 
     <br>
 
   - **All Entries Page**
+    - The page has a date filter.
+    - Pagination limits the number of entries that are displayed on a single page
+    - Allows users to view, edit, and delete any of their entries
   
     ![All Entries](static/../journal/static/journal/gifs/all_entries.gif)
 
     <br>
 
   - **Profile Page**
+    - The page has the "longest journaling streak" statistic for motivating users
+    - Users may change their password via this page
   
     ![Profile Page](static/../journal/static/journal/gifs/profile.gif)
 
@@ -129,6 +151,16 @@ To run the **Journal** locally, follow these steps:
     ```
 8. Access the app by visiting `http://localhost:8000` in a web browser of your choice.
 9. Create a new account, and start using **Journal**.
+
+## Language & Tools
+
+- Python (Django Framework)
+- JavaScript
+- Bootstrap
+- HTML
+- CSS
+- SQLite
+- TinyMCE Text Editor
 
 ## Potential Improvements To Do
 
