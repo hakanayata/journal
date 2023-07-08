@@ -164,10 +164,10 @@ To run the **Journal** locally, follow these steps:
 
 ## Potential Improvements To Do
 
-1. Adding an animation for displaying entries
-2. Implementing a feature where clicking on tags lists all the entries related to that specific tag
-3. Adding dark mode to rich text editor
-4. Integrating Google Sign-In
+1. Integrating Google Sign-In
+2. Adding an animation for displaying entries
+3. Implementing a feature where clicking on tags lists all the entries related to that specific tag
+4. Enabling dark mode for rich text editor
 5. Allowing users to add images to their entries.
 6. By making use of Django backend, building the app's frontend with React Native and publishing it on the App Store and Play Store
 
