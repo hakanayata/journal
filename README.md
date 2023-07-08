@@ -72,7 +72,7 @@ My final project satisfies the distinctiveness and complexity requirements becau
     <br>
 
   - **All Entries Page**
-    - The page has a date filter.
+    - The page includes a date filter.
     - Pagination limits the number of entries that are displayed on a single page
     - Allows users to view, edit, and delete any of their entries
   
@@ -81,7 +81,7 @@ My final project satisfies the distinctiveness and complexity requirements becau
     <br>
 
   - **Profile Page**
-    - The page has the "longest journaling streak" statistic for motivating users
+    - The page features the "longest journaling streak" statistic to motivate users
     - Users may change their password via this page
   
     ![Profile Page](static/../journal/static/journal/gifs/profile.gif)
