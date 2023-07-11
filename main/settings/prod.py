@@ -1,4 +1,5 @@
 from .base import *
+import os
 
 DEBUG = False
 
@@ -13,3 +14,6 @@ DATABASES = {
         'HOST': config("SQL_HOST"),
     }
 }
+
+# STATIC_ROOT = "/home/myusername/myproject/static"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
