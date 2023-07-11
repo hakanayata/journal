@@ -16,4 +16,5 @@ DATABASES = {
 }
 
 # STATIC_ROOT = "/home/myusername/myproject/static"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = "/home/cs50journal/journal/journal/static"
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
